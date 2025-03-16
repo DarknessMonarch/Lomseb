@@ -1,0 +1,124 @@
+@media screen {
+  .inventoryContainer {
+    gap: 20px;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-direction: column;
+  }
+
+  .inventoryNavbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
+
+  .inventoryNavbar h1 {
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-family: var(--font-poppins-light);
+  }
+
+  .inventoryNavBtnWrapper {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .inventoryNavBtn{
+    gap: 4px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+    max-height: 40px;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    color: var(--background-color);
+    font-family: var(--font-outfit-medium);
+    background-color: var(--tertiary-color);
+  }
+
+  .inventoryNavBtn:hover {
+    background-color: var( --tertiary-color-light);
+  }
+
+  .inventoryNavBtn span {
+    display: none;
+  }
+
+  .addIcon {
+    font-size: 20px;
+
+  }
+
+  .mainContent {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 20px;
+    background-color: var(--background-color);
+  
+  }
+
+  .content {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: inherit;
+  }
+
+  .emptyCard {
+    width: 100%;
+    min-width: 0;
+    height: 350px;
+    border-radius: 15px;
+  }
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+  .inventoryContainer {
+    padding: 20px;
+
+  }
+
+  .mainContent {
+    padding: 20px;
+
+  }
+
+  .inventoryNavBtn span {
+    display: flex;
+  }
+
+  .emptyCard {
+    height: 300px;
+  }
+}
+
+/* ipad pro screens & laptop */
+@media only screen and (min-width: 49em) and (max-width: 64em) {
+
+  
+}
+
+/* large screens : Desktop and 4k screens */
+
+@media only screen and (min-width: 64.063em) and (max-width: 90em) {
+ 
+}
+
+/* 5k screens and above */
+@media only screen and (min-width: 91em) {
+ 
+}

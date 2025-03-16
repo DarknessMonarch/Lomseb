@@ -1,0 +1,300 @@
+@media screen {
+  .mainContent {
+    gap: 20px;
+    margin: 10px;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    overflow-x: hidden;
+    flex-direction: column;
+  }
+
+  .singleBtnContainer {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+
+  .backButton {
+    gap: 4px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+    max-height: 40px;
+    align-items: center;
+    border-radius: 4px;
+    justify-content: center;
+    color: var(--background-color);
+    font-family: var(--font-outfit-medium);
+    background-color: var(--tertiary-color);
+  }
+
+  .backButton:hover {
+    background-color: var(--tertiary-color-light);
+  }
+
+  .backButtonIcon {
+    font-size: 20px;
+    color: var(--background-color);
+  }
+
+  .cartIcon {
+    font-size: 20px;
+  }
+
+  .backButton {
+    cursor: pointer;
+    color: var(--background-color);
+  }
+
+  .backButton span {
+    display: none;
+  }
+
+  .inventoryNavBtn {
+    gap: 4px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+    max-height: 40px;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--tertiary-color);
+    font-family: var(--font-outfit-medium);
+    border: 1px solid var(--tertiary-color);
+  }
+
+  .inventoryNavBtn:hover {
+    color: var(--background-color);
+    background-color: var(--tertiary-color-light);
+    border: 1px solid var(--tertiary-color-light);
+  }
+
+  .editIcon {
+    font-size: 20px;
+    color: var(--tertiary-color);
+  }
+
+  .inventoryNavBtn:hover .editIcon {
+    color: var(--background-color);
+  }
+
+  .content {
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    background-color: var(--background-color);
+  }
+
+  .cardImage {
+    width: 100%;
+    min-height: 200px;
+    position: relative;
+    border-radius: 30px;
+  }
+
+  .productName {
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    font-size: 0.8rem;
+    position: absolute;
+    border-radius: 10px;
+    color: var(--tertiary-color);
+    box-shadow: var(--box-shadow);
+    font-family: var(--font-poppins-light);
+    background-color: var(--background-color);
+  }
+
+  .addToCartSection{
+    gap: 10px;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    padding: 10px;
+    position: absolute;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-color);
+
+  }
+
+  .quantityControls {
+    gap: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+  }
+
+  .quantityInput {
+    width: 30px;
+    height: 30px;
+    border: none;
+    padding: 0 10px;
+    border-radius: 5px;
+    box-shadow: var(--depth-shadow);
+    color: var(--tertiary-color-light);
+  }
+
+  .quantityBtn {
+    height: 40px;
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-color);
+  }
+
+  .quantityBtn:hover {
+    color: var(--background-color);
+    background-color: var(--tertiary-color-light);
+  }
+
+  .deleteBtn {
+    background-color: var(--return-color);
+    border: 1px solid var(--return-color);
+  }
+  
+  .deleteBtn:hover {
+    border: 1px solid var(--return-color-light);
+    background-color: var(--return-color-light);
+  }
+  
+  .deleteIcon {
+    color: var(--background-color);
+
+  }
+
+  .quantityIcon {
+    font-size: 20px;
+    color: var(--tertiary-color);
+  }
+
+  .quantityBtn:hover .quantityIcon {
+    color: var(--background-color);
+  }
+
+  .productImage {
+    border-radius: 20px;
+    box-shadow: var(--box-shadow-line);
+  }
+
+  .cardBottom {
+    gap: 20px;
+    width: 100%;
+    display: flex;
+    padding: 20px 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+
+  .productDetails {
+    gap: 10px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    border-radius: 20px;
+    flex-direction: column;
+    box-shadow: var(--depth-shadow)
+  }
+
+  .productDetailsInfo {
+    display: flex;
+    align-items: center;
+  }
+
+  .productDetailsInfo h1 {
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-family: var(--font-poppins-regular);
+  }
+
+  .productDetailsInfo span {
+    width: 100%;
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-family: var(--font-poppins-light);
+  }
+
+
+  .qrCode {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+  }
+
+  .qrImage {
+    width: 100%;
+    height: 100%;
+  }
+}
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+  .mainContent {
+    margin: 20px;
+  }
+
+  .backButton span {
+    display: flex;
+    text-transform: capitalize;
+    color: var(--background-color);
+  }
+
+  .productDetails {
+    height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+  }
+
+  .productName {
+    top: 15px;
+    left: 15px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .cardBottom {
+    overflow: hidden;
+    flex-wrap: nowrap;
+  }
+
+  .qrCode {
+    width: fit-content;
+  }
+  .qrImage {
+    width: auto;
+    height: 100%;
+    min-height: 400px;
+  }
+}

@@ -1,0 +1,358 @@
+@media screen {
+  .formMain {
+    gap: 20px;
+    height: 100%;
+    margin: 10px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .formHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .formHeader h1 {
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-family: var(--font-poppins-light);
+  }
+
+  .formNavBtnWrapper {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .saveButton {
+    gap: 4px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+    max-height: 40px;
+    align-items: center;
+    border-radius: 4px;
+    justify-content: center;
+    color: var(--tertiary-color);
+    border: 1px solid var(--tertiary-color);
+    font-family: var(--font-outfit-medium);
+  }
+
+  .saveButton:hover {
+    background-color: var(--tertiary-color-light);
+    color: var(--background-color);
+  }
+
+  .saveButtonIcon {
+    font-size: 20px;
+    color: var(--tertiary-color);
+  }
+
+  .saveButton:hover .saveButtonIcon {
+    color: var(--background-color);
+  }
+
+  .backButton {
+    gap: 4px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+    max-height: 40px;
+    align-items: center;
+    border-radius: 4px;
+    justify-content: center;
+    color: var(--background-color);
+    font-family: var(--font-outfit-medium);
+    background-color: var(--tertiary-color);
+  }
+
+  .backButton:hover {
+    background-color: var(--tertiary-color-light);
+  }
+
+  .backButtonIcon {
+    font-size: 20px;
+    color: var(--background-color);
+  }
+
+  .backButton {
+    cursor: pointer;
+    color: var(--background-color);
+  }
+
+  .backButton span {
+    display: none;
+  }
+
+  .formContainer {
+    gap: 20px;
+    display: flex;
+    padding: 10px;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 20px;
+    flex-direction: column;
+    background-color: var(--background-color);
+  }
+
+  .formContainerInner {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .formGridContainer {
+    gap: 20px;
+    display: flex;
+  }
+
+  .formInputContainer,
+  .formInputWrapper {
+    gap: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .formInputContainer {
+    width: 100%;
+    display: flex;
+    border-radius: 15px;
+    flex-direction: column;
+  }
+
+  .formInputContainer label,
+  .formInputWrapper label {
+    font-family: var(--font-poppins-regular);
+    text-transform: capitalize;
+    text-wrap: nowrap;
+    font-size: 1rem;
+  }
+
+  .formInputContainer label {
+    display: flex;
+    align-items: center;
+  }
+
+  .formationInput {
+    gap: 10px;
+    display: flex;
+  }
+
+  .addButton {
+    gap: 15px;
+    width: 60px;
+    cursor: pointer;
+    font-size: 1rem;
+    max-height: 60px;
+    min-height: 60px;
+    border-radius: 15px;
+    color: var(--primary-color);
+    background-color: var(--tertiary-color);
+  }
+
+  .addButton:hover {
+    background-color: var(--tertiary-light-color);
+  }
+
+  .addIcon {
+    font-size: 24px;
+    color: var(--primary-color);
+  }
+
+  .formImageContainer {
+    gap: 15px;
+    width: 100%;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+  }
+
+  .formChangeUpload {
+    flex-grow: 1;
+    display: flex;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    border: 2px dotted var(--primary-light-color);
+  }
+
+  .imageUploaded {
+    border: none;
+  }
+
+  .IdImage {
+    border-radius: inherit;
+  }
+
+  .CameraIcon {
+    font-size: 24px;
+    color: var(--primary-light-color);
+  }
+
+  .inputField {
+    width: 100%;
+    border: none;
+    height: 60px;
+    outline: none;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: var(--background-color-dark);
+  }
+
+  .inputField:-webkit-autofill,
+  .inputField:-webkit-autofill:hover,
+  .inputField:-webkit-autofill:focus,
+  .inputField:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--primary-light-color) !important;
+  }
+
+  .inputField::placeholder {
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    color: var(--primary-light-color);
+  }
+
+  .customFieldsSection {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .addCustomFieldContainer {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+  }
+
+  .customFieldInputs {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+
+  }
+
+  .addCustomFieldBtn {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: var(--background-color);
+    background-color: var(--tertiary-color); 
+  }
+
+  .addIcon{
+    font-size: 24px;
+    color: var(--background-color);
+  }
+
+  .customFieldsList {
+    gap: 10px;
+    display: flex;
+    overflow-x:auto;
+    overflow: hidden;
+    overflow-y: hidden;
+    align-items: center;
+  }
+
+  .customFieldItem {
+    gap: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    min-width: fit-content;
+    background-color: var( --background-color-dark);
+
+  }
+
+  .customFieldInfo {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+  }
+
+  .customFieldInfo span {
+    font-size: 1rem;
+    color: var(--tertiary-color);
+    font-family: var(--font-poppins-light);
+  }
+
+  .removeCustomFieldBtn {
+    background: transparent;
+  }
+
+  .removeIcon {
+    font-size: 20px;
+  }
+
+  .submitButton {
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    max-height: 40px;
+    min-height: 40px;
+    border-radius: 5px;
+    color: var(--background-color);
+    background-color: var(--tertiary-color);
+  }
+
+  .submitButton:hover {
+    background-color: var(--tertiary-color-light);
+  }
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+  .formMain {
+    margin: 20px;
+  }
+  .formContainer {
+    padding: 20px;
+  }
+
+  .backButton span {
+    display: flex;
+    text-transform: capitalize;
+    color: var(--background-color);
+  }
+
+  .formChangeUpload {
+    height: 150px;
+  }
+
+  .CameraIcon {
+    font-size: 32px;
+  }
+
+  .formImageContainer {
+    flex-direction: row;
+    background-color: transparent;
+  }
+}
+
+/* ipad pro screens & laptop */
+@media only screen and (min-width: 49em) and (max-width: 64em) {
+}
+
+/* large screens : Desktop and 4k screens */
+
+@media only screen and (min-width: 64.063em) and (max-width: 90em) {
+}
+
+/* 5k screens and above */
+@media only screen and (min-width: 91em) {
+}

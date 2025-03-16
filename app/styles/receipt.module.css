@@ -1,0 +1,354 @@
+/* receipt.module.css */
+
+.receiptOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(56, 62, 73, 0.8); /* primary-color with opacity */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.receiptContainer {
+  background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.receiptHeader {
+  background-color: var(--tertiary-color);
+  color: var(--background-color);
+  padding: 2rem;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.successIcon {
+  font-size: 3rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.receiptHeader h1 {
+  margin: 0.5rem 0;
+  font-size: 1.8rem;
+}
+
+.receiptHeader p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+.receiptContent {
+  padding: 2rem;
+}
+
+.receiptTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--background-color-dark);
+  padding-bottom: 1rem;
+}
+
+.receiptTitle h2 {
+  margin: 0 0 0.5rem 0;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.receiptMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--primary-light-color);
+}
+
+.receiptMeta p {
+  margin: 0;
+}
+
+.receiptInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.customerInfo, .paymentInfo {
+  background-color: var(--background-color-dark);
+  padding: 1.25rem;
+  border-radius: 6px;
+  box-shadow: var(--box-shadow-line);
+}
+
+.customerInfo h3, .paymentInfo h3, .receiptItemsContainer h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--tertiary-color);
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--tertiary-color-light);
+  padding-bottom: 0.5rem;
+}
+
+.customerInfo p, .paymentInfo p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.receiptItemsContainer {
+  margin-bottom: 2rem;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--box-shadow-line);
+}
+
+.receiptItems {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--background-color);
+}
+
+.receiptItems th {
+  background-color: var(--tertiary-color-light);
+  color: var(--background-color);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 500;
+}
+
+.receiptItems td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--background-color-dark);
+}
+
+.itemCell {
+  min-width: 240px;
+}
+
+.itemInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itemImageWrapper {
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--background-color-dark);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.itemImage {
+  object-fit: contain;
+}
+
+.itemName {
+  display: block;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.itemId {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--primary-light-color);
+  margin-top: 0.25rem;
+}
+
+.receiptTotal {
+  background-color: var(--background-color-dark);
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-left: auto;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: var(--box-shadow-line);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.finalTotal {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--tertiary-color-light);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.remainingBalance {
+  color: var(--return-color);
+  font-weight: bold;
+}
+
+.receiptFooter {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px dashed var(--background-color-dark);
+}
+
+.logoContainer {
+  margin-bottom: 1rem;
+}
+
+.logo {
+  max-height: 40px;
+  width: auto;
+}
+
+.receiptNote {
+  color: var(--primary-light-color);
+  max-width: 500px;
+  margin: 1rem auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.receiptActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background-color: var(--background-color-dark);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  justify-content: center;
+}
+
+.actionButton, .continueButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 160px;
+}
+
+.actionButton {
+  background-color: var(--tertiary-color);
+  color: var(--background-color);
+}
+
+.actionButton:hover {
+  background-color: var(--tertiary-color-light);
+}
+
+.actionButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.continueButton {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.continueButton:hover {
+  opacity: 0.9;
+}
+
+.whatsappButton {
+  background-color: #25D366; /* WhatsApp green */
+}
+
+.whatsappButton:hover {
+  background-color: #128C7E; /* Darker WhatsApp green */
+}
+
+/* Payment status styles */
+.paidStatus {
+  color: var(--secondary-color);
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.partialStatus {
+  color: var(--recieved-color);
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.unpaidStatus {
+  color: var(--return-color);
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 768px) {
+  .receiptInfo {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .receiptTotal {
+    max-width: 100%;
+  }
+
+  .receiptItems {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .actionButton, .continueButton {
+    flex: 1 1 calc(50% - 0.5rem);
+    min-width: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .receiptContent {
+    padding: 1rem;
+  }
+
+  .receiptHeader {
+    padding: 1.5rem 1rem;
+  }
+
+  .receiptActions {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .actionButton, .continueButton {
+    width: 100%;
+  }
+
+  .itemCell {
+    min-width: 180px;
+  }
+}

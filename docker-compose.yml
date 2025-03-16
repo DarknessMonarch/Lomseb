@@ -1,0 +1,15 @@
+services:
+  lomsebfrontend:
+    container_name: lomseb
+    restart: unless-stopped
+    build: .
+    image: lomseb
+    networks:
+      - nginxproxymanager_default
+    ports:
+      - "3003:6000"
+
+networks:
+  nginxproxymanager_default:
+    name: nginxproxymanager_default
+    external: true

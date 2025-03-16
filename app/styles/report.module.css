@@ -1,0 +1,241 @@
+@media screen {
+  .reportContainer {
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: scroll; 
+  }
+  
+  /* Common Section Styles */
+  .overviewSection, .chartSection, .tableSection {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+  }
+  
+  .seeAllLink {
+    color: #3b82f6;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  .seeAllLink:hover {
+    text-decoration: underline;
+  }
+  
+  /* Overview Section Styles */
+  .overviewCards {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .overviewCards.secondRow {
+    margin-bottom: 0;
+  }
+  
+  .overviewCard {
+    flex: 1;
+  }
+  
+  .cardValue {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+  
+  .cardValue.orange {
+    color: #f59e0b;
+  }
+  
+  .cardValue.purple {
+    color: #8b5cf6;
+  }
+  
+  .cardLabel {
+    font-size: 14px;
+    color: #6b7280;
+  }
+  
+  .cardLabel.orange {
+    color: #f59e0b;
+  }
+  
+  .cardLabel.purple {
+    color: #8b5cf6;
+  }
+  
+  /* Chart Section Styles */
+  .timeframeToggle {
+    display: flex;
+    align-items: center;
+  }
+  
+  .timeframeLabel {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #6b7280;
+  }
+  
+  .timeframeLabel input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+  }
+  
+  .timeframeLabel input:checked ~ .checkmark {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .timeframeLabel input:checked ~ .checkmark:after {
+    display: block;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  .chartContainer {
+    position: relative;
+  }
+  
+  .customTooltip {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+  }
+  
+  .tooltipLabel {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+  }
+  
+  .tooltipValue {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+  }
+  
+  .chartLegend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 16px;
+  }
+  
+  .legendItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #6b7280;
+  }
+  
+  .legendDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  
+  .legendDot.blue {
+    background-color: #3b82f6;
+  }
+  
+  .legendDot.purple {
+    background-color: #a855f7;
+  }
+  
+  /* Table Styles */
+  .tableContainer {
+    overflow-x: auto;
+  }
+  
+  .dataTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .dataTable th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .dataTable td {
+    padding: 16px;
+    font-size: 14px;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .increaseValue {
+    color: #10b981;
+    font-weight: 500;
+  }
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+}
+
+/* ipad pro screens & laptop */
+@media only screen and (min-width: 49em) and (max-width: 64em) {
+}
+
+/* large screens : Desktop and 4k screens */
+
+@media only screen and (min-width: 64.063em) and (max-width: 90em) {
+}
+
+/* 5k screens and above */
+@media only screen and (min-width: 91em) {
+}

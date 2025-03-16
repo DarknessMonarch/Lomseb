@@ -1,0 +1,83 @@
+@media screen {
+  .popupContainer {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    border: none;
+    position: absolute;
+    flex-direction: column;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-color);
+  }
+
+  .popupHeader {
+    display: flex;
+    padding: 8px 4px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .notchbar {
+    width: 30%;
+    height: 3px;
+    border-radius: 30px;
+    background-color: var(--dark-light);
+  }
+
+  .popupExit {
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--tertiary-color);
+  }
+
+  .popupIcon {
+    font-size: 28px;
+  }
+
+  .popupIcon:hover {
+    color: var(--tertiary-light-color);
+  }
+
+  .popupContent {
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-direction: column;
+  }
+
+  .dotContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popupDotIcon {
+    font-size: 28px;
+    color: var(--dark-light);
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .popupContainer {
+    top: 70px;
+    left: auto;
+    right: 30px;
+    width: 500px;
+    max-height: 500px;
+    height: fit-content;
+    border-radius: 15px;
+    border: 1px solid var(--line-color);
+  }
+}

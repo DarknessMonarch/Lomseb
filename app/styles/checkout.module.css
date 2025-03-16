@@ -1,0 +1,257 @@
+
+.checkoutContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 1rem;
+  }
+  
+  .checkoutLayout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .checkoutLayout {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .customerInfoSection {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+  }
+  
+  .customerInfoSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .checkoutForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .formGroup label {
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .formGroup input, 
+  .formGroup textarea {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .paymentOptions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .paymentOption {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  
+  .paymentOption:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .paymentOption input {
+    margin: 0;
+  }
+  
+  .formActions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  
+  .backButton {
+    padding: 0.8rem 1.5rem;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .backButton:hover {
+    background-color: #eaeaea;
+  }
+  
+  .checkoutButton {
+    padding: 0.8rem 1.5rem;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .checkoutButton:hover {
+    background-color: #45a049;
+  }
+  
+  .checkoutButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .orderSummary {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    height: fit-content;
+  }
+  
+  .orderSummary h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 0.5rem;
+  }
+  
+  .orderItems {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+  
+  .orderItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .itemInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .itemName {
+    font-weight: 500;
+  }
+  
+  .itemQuantity {
+    color: #777;
+    font-size: 0.9rem;
+  }
+  
+  .itemPrice {
+    font-weight: 500;
+  }
+  
+  .orderTotals {
+    border-top: 1px solid #eaeaea;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .totalRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+  }
+  
+  .finalTotal {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid #eaeaea;
+  }
+  
+  .emptyCartMessage {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .emptyCartMessage h2 {
+    margin-bottom: 1.5rem;
+    color: #666;
+  }
+  
+  .returnToShopBtn {
+    padding: 0.8rem 1.5rem;
+    background-color: #2196f3;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .returnToShopBtn:hover {
+    background-color: #0b7dda;
+  }
+  
+  /* Additional styles for checkout in cart page */
+  .checkoutTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 1rem;
+  }
+  
+  .formInput, 
+  .formTextarea {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  .formTextarea {
+    resize: vertical;
+    min-height: 100px;
+  }

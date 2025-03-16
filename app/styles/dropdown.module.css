@@ -1,0 +1,65 @@
+@media screen {
+.dropdownContainer {
+  gap: 10px;
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  flex-direction: column;
+}
+
+
+.dropdownContainer span {
+  font-size: 1rem;
+}
+
+
+.dropdownInput {
+  width: 100%;
+  display: flex;
+  padding: 16px 0;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdownIcon {
+  font-size: 24px;
+}
+
+.dropdownArea{
+  top: 60px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  overflow: hidden;
+  overflow-y: auto;
+  max-height: 350px;
+  overflow-x: hidden;
+  position: absolute;
+  border-radius: 20px;
+  flex-direction: column;
+  color: var(--light-color);
+  background-color: var(--primary-light-color);
+
+}
+
+
+.dropdownArea span {
+  padding: 10px;
+}
+
+.dropdownArea span:hover {
+  border-radius: 8px;
+  color: var(--primary-color);
+  background-color:var(--primary-light-color); 
+}
+
+
+
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+
+}

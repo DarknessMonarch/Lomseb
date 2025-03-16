@@ -1,0 +1,901 @@
+@media screen {
+  .dashboardContainer {
+    padding: 24px;
+    background-color: var(--background-color-dark);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    color: var(--primary-color);
+
+  }
+
+  .dashboardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .dashboardHeader h1 {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 28px;
+    margin: 0;
+  }
+
+  .headerActions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .dateSelector {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .dateSelector span {
+    margin-right: 8px;
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+
+  .dropdownButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-light-color);
+    font-size: 10px;
+  }
+
+  .resetButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--return-color);
+    color: var(--background-color);
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: var(--font-poppins-medium);
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .resetButton:hover {
+    background-color: var(--return-color-light);
+  }
+
+  .resetButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  /* Section Title */
+  .sectionTitle {
+    gap: 10px;
+    margin: 24px 0 16px;
+    border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sectionTitle h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+  }
+
+  /* Stats Cards */
+  .statsContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .statsCard {
+    background-color: var(--background-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(224, 224, 224, 0.15);
+  }
+
+  .statsCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .statsCardIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(59, 130, 246, 0.1);
+    border-radius: 12px;
+    margin-right: 16px;
+    color: var(--tertiary-color);
+    font-size: 20px;
+  }
+
+  .statsCardIcon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .warningIcon {
+    color: var(--return-color);
+  }
+
+  .statsContent {
+    flex: 1;
+  }
+
+  .statsCard h3 {
+    font-size: 14px;
+    color: var(--primary-light-color);
+    margin: 0 0 8px 0;
+    font-weight: 500;
+  }
+
+  .statsValue {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+  }
+
+  .statsChange {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+  }
+
+  .statsChange.positive {
+    color: var(--secondary-color);
+  }
+
+  .statsChange.negative {
+    color: var(--return-color);
+  }
+
+  .statsInfo {
+    font-size: 13px;
+    color: var(--primary-light-color);
+  }
+
+  .period {
+    color: var(--primary-light-color);
+    margin-left: 4px;
+  }
+
+  /* Mini Chart Container */
+  .miniChartContainer {
+    margin-top: 8px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Charts Container */
+  .chartsContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .revenueChart,
+  .totalSales {
+    background-color: var(--background-color);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(224, 224, 224, 0.15);
+  }
+
+  .chartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .chartHeader h3 {
+    font-size: 18px;
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+  }
+
+  .legendItem {
+    display: flex;
+    align-items: center;
+  }
+
+  .legendColor {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  .legendColor.current {
+    background-color: var(--tertiary-color);
+  }
+
+  .legendColor.target {
+    background-color: var(--secondary-color);
+  }
+
+  .legendColor.direct {
+    background-color: var(--tertiary-color);
+  }
+
+  .legendColor.affiliate {
+    background-color: var(--recieved-color);
+  }
+
+  .legendColor.online {
+    background-color: var(--secondary-color);
+  }
+
+  .legendLabel {
+    font-size: 13px;
+    color: var(--primary-light-color);
+  }
+
+  /* Chart Legend */
+  .chartLegend {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    justify-content: center;
+  }
+
+  .legendDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  .legendDot.blue {
+    background-color: #3b82f6;
+  }
+
+  .legendDot.purple {
+    background-color: #a855f7;
+  }
+
+  /* Chart Area */
+  .chartContainer {
+    width: 100%;
+    height: 240px;
+  }
+
+  /* Donut Chart */
+  .totalSales h3 {
+    font-size: 18px;
+    color: var(--primary-color);
+    margin: 0 0 16px 0;
+    font-weight: 600;
+  }
+
+  .donutChartContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 180px;
+  }
+
+  .donutChart {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--tertiary-color) 0% 30%,
+      var(--return-color) 30% 55%,
+      var(--recieved-color) 55% 75%,
+      var(--secondary-color) 75% 100%
+    );
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .donutInner {
+    width: 110px;
+    height: 110px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .donutValue {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+
+  .donutLabel {
+    font-size: 12px;
+    color: var(--primary-light-color);
+  }
+
+  /* Tables */
+  .tablesContainer {
+    background-color: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(224, 224, 224, 0.15);
+    margin-bottom: 24px;
+  }
+
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+    padding: 0 16px;
+    position: relative;
+  }
+
+  .tab {
+    padding: 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--primary-light-color);
+    font-size: 14px;
+    position: relative;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .tab:hover {
+    color: var(--tertiary-color);
+  }
+
+  .tab.active {
+    color: var(--tertiary-color);
+    font-weight: 600;
+  }
+
+  .tab.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--tertiary-color);
+  }
+
+  .exportButton {
+    margin-left: auto;
+    padding: 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--tertiary-color);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+  }
+
+  .exportButton:hover {
+    text-decoration: underline;
+  }
+
+  .exportButton span {
+    margin-left: 4px;
+  }
+
+  .tableContent {
+    padding: 20px;
+  }
+
+  .dataTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .dataTable th {
+    text-align: left;
+    padding: 12px 16px;
+    color: var(--primary-light-color);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+    background-color: rgba(240, 240, 240, 0.03);
+  }
+
+  .dataTable td {
+    padding: 14px 16px;
+    color: var(--primary-color);
+    font-size: 14px;
+    border-bottom: 1px solid rgba(224, 224, 224, 0.1);
+    transition: background-color 0.2s ease;
+  }
+
+  .dataTable tr:hover td {
+    background-color: rgba(240, 240, 240, 0.05);
+  }
+
+  .dataTable tr:last-child td {
+    border-bottom: none;
+  }
+
+  .restockButton {
+    background-color: var(--tertiary-color-light);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    transition: background-color 0.2s ease;
+  }
+
+  .restockButton:hover {
+    background-color: var(--tertiary-color);
+  }
+
+  .restockButton svg {
+    margin-right: 6px;
+  }
+
+  .noData {
+    text-align: center;
+    color: var(--primary-light-color);
+    font-style: italic;
+    padding: 24px;
+  }
+
+  /* Debt Management Specific Styles */
+  .debtManagementContainer {
+    width: 100%;
+  }
+
+  .debtViewTabs {
+    display: flex;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+
+  .viewTab {
+    background-color: rgba(240, 240, 240, 0.05);
+    border: 1px solid rgba(224, 224, 224, 0.2);
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: var(--primary-light-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .viewTab:hover {
+    background-color: rgba(240, 240, 240, 0.1);
+  }
+
+  .activeView {
+    background-color: var(--tertiary-color);
+    color: white;
+    border-color: var(--tertiary-color);
+  }
+
+  .statusBadge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .currentBadge {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: rgb(16, 185, 129);
+  }
+
+  .overdueBadge {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: rgb(239, 68, 68);
+  }
+
+  .overdueRow {
+    background-color: rgba(239, 68, 68, 0.03);
+  }
+
+  .overdueRow:hover td {
+    background-color: rgba(239, 68, 68, 0.05) !important;
+  }
+
+  .actionButtons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .viewButton,
+  .reminderButton {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-weight: 500;
+  }
+
+  .viewButton {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: rgb(59, 130, 246);
+  }
+
+  .viewButton:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+  }
+
+  .reminderButton {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: rgb(239, 68, 68);
+  }
+
+  .reminderButton:hover {
+    background-color: rgba(239, 68, 68, 0.2);
+  }
+
+  .reminderButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* Loading and Error States */
+  .loadingContainer,
+  .errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    text-align: center;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(59, 130, 246, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--tertiary-color);
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 16px;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .retryButton {
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: var(--tertiary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .retryButton:hover {
+    background-color: var(--tertiary-color-dark);
+  }
+
+  /* Add these styles to your dashboard.module.css file */
+
+  .refreshingIndicator {
+    display: inline-block;
+    font-size: 14px;
+    color: #666;
+    margin-left: 10px;
+    font-style: italic;
+  }
+
+  .refreshButton {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .refreshButton:hover {
+    background-color: #e3e3e3;
+  }
+
+  .refreshButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .spinning {
+    animation: spin 1s linear infinite;
+    margin-right: 6px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Debt status badges */
+  .statusBadge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .currentBadge {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #2e7d32;
+  }
+
+  .overdueBadge {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #d32f2f;
+  }
+
+  .paidBadge {
+    background-color: rgba(33, 150, 243, 0.2);
+    color: #1976d2;
+  }
+
+  /* Added styles for better debt table info */
+  .overdueRow {
+    background-color: rgba(244, 67, 54, 0.05);
+  }
+
+  .overdueRow:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+  }
+
+  /* Payment Input Styles */
+.paymentContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.paymentInput {
+  width: 80px;
+  padding: 8px 10px;
+  border: 1px solid rgba(224, 224, 224, 0.3);
+  border-radius: 6px;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.paymentInput:focus {
+  outline: none;
+  border-color: var(--tertiary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.paymentInput::placeholder {
+  color: var(--primary-light-color);
+  opacity: 0.6;
+}
+
+.paymentButton {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--tertiary-color);
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.paymentButton:hover {
+  background-color: var(--tertiary-color-dark);
+}
+
+.paymentButton:disabled {
+  background-color: var(--tertiary-color-light);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Make tables more responsive */
+@media screen and (max-width: 992px) {
+  .dataTable {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .paymentContainer {
+    min-width: 150px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dataTable thead {
+    display: none;
+  }
+  
+  .dataTable, 
+  .dataTable tbody, 
+  .dataTable tr, 
+  .dataTable td {
+    display: block;
+    width: 100%;
+  }
+  
+  .dataTable tr {
+    margin-bottom: 15px;
+    border: 1px solid rgba(224, 224, 224, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+  }
+  
+  .dataTable td {
+    display: flex;
+    padding: 10px 8px;
+    text-align: right;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(224, 224, 224, 0.1);
+  }
+  
+  .dataTable td:last-child {
+    border-bottom: none;
+  }
+  
+  .dataTable td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 600;
+    color: var(--primary-light-color);
+  }
+  
+  .paymentContainer {
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .paymentInput {
+    flex: 1;
+    max-width: 120px;
+  }
+  
+  /* Pagination responsive adjustments */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .paginationButton {
+    min-width: 80px;
+  }
+}
+
+/* Additional styles for pagination if not already defined */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 8px 16px;
+}
+
+.paginationButton {
+  background-color: var(--background-color);
+  border: 1px solid rgba(224, 224, 224, 0.3);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: var(--tertiary-color);
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+}
+
+/* Media Queries */
+@media screen and (max-width: 1024px) {
+  .statsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .chartsContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .statsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .headerActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 8px;
+  }
+
+  .tab {
+    padding: 12px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+}

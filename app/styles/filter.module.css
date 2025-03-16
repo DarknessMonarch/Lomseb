@@ -1,0 +1,78 @@
+@media screen {
+.dropdownContainer {
+  height: 40px;
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  min-width: 100px;
+  width: fit-content;
+  position: relative;
+  align-items: center;
+  border-radius: 4px;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--tertiary-color);
+  border: 1px solid var(--tertiary-color);
+
+}
+
+.dropdownContainer:hover {
+  background-color: var(--tertiary-color-light);
+  color: var(--background-color);
+}
+
+.dropdownContainer span {
+  font-size: .8rem;
+}
+
+.dropdownInput {
+  gap: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: inherit;
+  justify-content: space-evenly;
+}
+
+.dropdownIcon {
+  font-size: 24px;
+}
+
+.dropdownArea{
+  top: 60px;
+  z-index: 99;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  overflow: hidden;
+  max-height: 350px;
+  overflow-x: hidden;
+  position: absolute;
+  border-radius: inherit;
+  flex-direction: column;
+  text-transform: capitalize;
+  color: var(--primary-color);
+  box-shadow: var(--box-shadow);
+  background-color: var(--background-color);
+
+
+}
+
+
+.dropdownArea span {
+  padding: 10px;
+}
+
+.dropdownArea span:hover {
+  border-radius: 4px;
+  color: var(--background-color);
+  background-color:var(--tertiary-color); 
+}
+
+
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+
+}
