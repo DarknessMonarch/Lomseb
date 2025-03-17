@@ -7,7 +7,7 @@ services:
     networks:
       - nginxproxymanager_default
     ports:
-      - "3003:6000"
+      - "3303:6000"
 
 networks:
   nginxproxymanager_default:
