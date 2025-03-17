@@ -9,7 +9,7 @@ import { FaTrashAlt as DeleteIcon } from "react-icons/fa";
 import { useCartStore } from "@/app/store/Cart";
 import { useProductStore } from "@/app/store/Product";
 import { toast } from "sonner";
-import { CheckoutReceipt } from "@/app/components/Reciept"; 
+import { CheckoutReceipt } from "@/app/components/Reciept";
 
 const itemsPerPage = 7;
 
@@ -22,26 +22,25 @@ export default function Cart() {
     name: "",
     email: "",
     phone: "",
-    address: ""
+    address: "",
   });
-  
-  // Add new state for partial payment
-  const [amountPaid, setAmountPaid] = useState(0);
+
+  const [amountPaid, setAmountPaid] = useState("");
   const [isPartialPayment, setIsPartialPayment] = useState(false);
-  
+
   // Receipt handling states
   const [showReceipt, setShowReceipt] = useState(false);
   const [orderData, setOrderData] = useState(null);
-  
-  const { 
-    cart, 
-    loading, 
-    error, 
-    getCart, 
-    updateCartItem, 
-    removeCartItem, 
+
+  const {
+    cart,
+    loading,
+    error,
+    getCart,
+    updateCartItem,
+    removeCartItem,
     clearCart,
-    checkout 
+    checkout,
   } = useCartStore();
 
   useEffect(() => {
@@ -55,7 +54,6 @@ export default function Cart() {
     fetchCart();
   }, [getCart]);
 
-  // When cart changes, update amountPaid if it's not a partial payment
   useEffect(() => {
     if (!isPartialPayment && cart?.total) {
       setAmountPaid(cart.total);
@@ -64,7 +62,7 @@ export default function Cart() {
 
   const handleQuantityChange = async (itemId, newQuantity) => {
     if (newQuantity < 1) return;
-    
+
     const result = await updateCartItem(itemId, newQuantity);
     if (result.success) {
       toast.success("Cart updated successfully");
@@ -97,9 +95,9 @@ export default function Cart() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setCustomerInfo(prev => ({
+    setCustomerInfo((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -110,26 +108,32 @@ export default function Cart() {
   const handlePartialPaymentToggle = () => {
     setIsPartialPayment(!isPartialPayment);
     if (!isPartialPayment) {
-      setAmountPaid(0); // Reset amount paid when enabling partial payment
+      setAmountPaid("");
     } else {
-      setAmountPaid(cart?.total || 0); // Set to total when disabling partial payment
+      setAmountPaid(cart?.total || 0);
     }
   };
 
   const handleAmountPaidChange = (e) => {
-    const value = parseFloat(e.target.value);
-    if (isNaN(value)) {
-      setAmountPaid(0);
+    const value = e.target.value;
+
+    if (value === "" || value === null) {
+      setAmountPaid("");
     } else {
-      // Don't allow amount paid to exceed total
-      setAmountPaid(Math.min(value, cart?.total || 0));
+      const numericValue = parseFloat(value);
+      if (isNaN(numericValue)) {
+        setAmountPaid("");
+      } else {
+        setAmountPaid(Math.min(numericValue, cart?.total || 0));
+      }
     }
   };
 
   const calculatePaymentStatus = () => {
-    if (!isPartialPayment || amountPaid >= (cart?.total || 0)) {
+    const paidAmount = amountPaid === "" ? 0 : parseFloat(amountPaid);
+    if (!isPartialPayment || paidAmount >= (cart?.total || 0)) {
       return "paid";
-    } else if (amountPaid > 0) {
+    } else if (paidAmount > 0) {
       return "partial";
     } else {
       return "unpaid";
@@ -137,68 +141,67 @@ export default function Cart() {
   };
 
   const calculateRemainingBalance = () => {
-    return Math.max(0, (cart?.total || 0) - amountPaid);
+    const paidAmount = amountPaid === "" ? 0 : parseFloat(amountPaid);
+    return Math.max(0, (cart?.total || 0) - paidAmount);
   };
 
   const handleSubmitCheckout = async (e) => {
     e.preventDefault();
-    
+
     if (!customerInfo.name || !customerInfo.phone) {
       toast.error("Please provide at least your name and phone number");
       return;
     }
-    
+
     try {
       if (!cart || !cart.items || cart.items.length === 0) {
         toast.error("Your cart is empty");
         return;
       }
-      
-      // Calculate payment status information
+
       const paymentStatus = calculatePaymentStatus();
       const remainingBalance = calculateRemainingBalance();
-      
+
       const result = await checkout(
         paymentMethod, 
         customerInfo, 
         paymentStatus, 
-        amountPaid,
+        amountPaid === "" ? 0 : parseFloat(amountPaid),
         remainingBalance
       );
-      
+
       if (result.success) {
-        // Format the order data for the receipt - UPDATED to include payment information
         const orderDetails = {
           reportId: result.orderId || `ORD-${Date.now().toString().slice(-6)}`,
-          items: cart.items.map(item => ({
+          items: cart.items.map((item) => ({
             name: item.name,
             productID: item._id,
             quantity: item.quantity,
             price: item.price,
             image: item.image,
-            unit: item.unit || "pcs"
+            unit: item.unit || "pcs",
           })),
           subtotal: cart.subtotal,
           discount: cart.discount,
           total: cart.total,
-          // Make sure these values come from the server response, not the local state
           paymentStatus: result.data.paymentStatus || paymentStatus,
           amountPaid: result.data.amountPaid || amountPaid,
-          remainingBalance: result.data.remainingBalance || remainingBalance
+          remainingBalance: result.data.remainingBalance || remainingBalance,
         };
-        
-        // Update state to show receipt
+
         setOrderData(orderDetails);
         setShowReceipt(true);
-        
+
         toast.success("Checkout completed successfully!");
       } else {
-        // Handle unavailable items
         if (result.unavailableItems && result.unavailableItems.length > 0) {
           const itemsList = result.unavailableItems
-            .map(item => `${item.name} (requested: ${item.requested}, available: ${item.available})`)
+            .map(
+              (item) =>
+                `${item.name} (requested: ${item.requested}, available: ${item.available})`
+            )
             .join(", ");
-          
+
           toast.error(`Some items are no longer available: ${itemsList}`);
         } else {
           toast.error(result.message || "Failed to complete checkout");
@@ -210,13 +213,11 @@ export default function Cart() {
     }
   };
 
-  // Close receipt handler
   const handleCloseReceipt = () => {
     setShowReceipt(false);
-    router.push('/page/inventory');
+    router.push("/page/inventory");
   };
 
-  // Calculate pagination
   const cartItems = cart?.items || [];
   const totalItems = cartItems.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -235,22 +236,27 @@ export default function Cart() {
 
   // Display the receipt if needed
   if (showReceipt && orderData) {
-    return <CheckoutReceipt 
-      orderData={orderData} 
-      customerInfo={{...customerInfo, paymentMethod}} 
-      onClose={handleCloseReceipt} 
-    />;
+    return (
+      <CheckoutReceipt
+        orderData={orderData}
+        customerInfo={{ ...customerInfo, paymentMethod }}
+        onClose={handleCloseReceipt}
+      />
+    );
   }
 
   if (showCheckout) {
     return (
       <div className={styles.checkoutContainer}>
         <h1 className={styles.checkoutTitle}>Complete Your Order</h1>
-        
+
         <div className={styles.checkoutLayout}>
           <div className={styles.customerInfoSection}>
             <h2>Customer Information</h2>
-            <form onSubmit={handleSubmitCheckout} className={styles.checkoutForm}>
+            <form
+              onSubmit={handleSubmitCheckout}
+              className={styles.checkoutForm}
+            >
               <div className={styles.formGroup}>
                 <label htmlFor="name">Name *</label>
                 <input
@@ -264,7 +270,7 @@ export default function Cart() {
                   className={styles.formInput}
                 />
               </div>
-              
+
               <div className={styles.formGroup}>
                 <label htmlFor="email">Email</label>
                 <input
@@ -277,7 +283,7 @@ export default function Cart() {
                   className={styles.formInput}
                 />
               </div>
-              
+
               <div className={styles.formGroup}>
                 <label htmlFor="phone">Phone *</label>
                 <input
@@ -291,7 +297,7 @@ export default function Cart() {
                   className={styles.formInput}
                 />
               </div>
-              
+
               <div className={styles.formGroup}>
                 <label htmlFor="address">Shipping Address</label>
                 <textarea
@@ -304,7 +310,7 @@ export default function Cart() {
                   className={styles.formTextarea}
                 />
               </div>
-              
+
               <div className={styles.formGroup}>
                 <label>Payment Method</label>
                 <div className={styles.paymentOptions}>
@@ -318,7 +324,7 @@ export default function Cart() {
                     />
                     <span>Cash</span>
                   </label>
-                  
+
                   <label className={styles.paymentOption}>
                     <input
                       type="radio"
@@ -329,7 +335,7 @@ export default function Cart() {
                     />
                     <span>Credit/Debit Card</span>
                   </label>
-                  
+
                   <label className={styles.paymentOption}>
                     <input
                       type="radio"
@@ -342,8 +348,7 @@ export default function Cart() {
                   </label>
                 </div>
               </div>
-              
-              {/* New partial payment option */}
+
               <div className={styles.formGroup}>
                 <div className={styles.partialPaymentToggle}>
                   <label className={styles.toggleLabel}>
@@ -355,7 +360,7 @@ export default function Cart() {
                     <span>Partial Payment</span>
                   </label>
                 </div>
-                
+
                 {isPartialPayment && (
                   <div className={styles.amountPaidInput}>
                     <label htmlFor="amountPaid">Amount Paid ($):</label>
@@ -372,12 +377,16 @@ export default function Cart() {
                     />
                   </div>
                 )}
-                
+
                 {isPartialPayment && (
                   <div className={styles.paymentSummary}>
                     <div className={styles.summaryRow}>
                       <span>Payment Status:</span>
-                      <span className={`${styles.paymentStatus} ${styles[calculatePaymentStatus()]}`}>
+                      <span
+                        className={`${styles.paymentStatus} ${
+                          styles[calculatePaymentStatus()]
+                        }`}
+                      >
                         {calculatePaymentStatus().toUpperCase()}
                       </span>
                     </div>
@@ -388,7 +397,7 @@ export default function Cart() {
                   </div>
                 )}
               </div>
-              
+
               <div className={styles.formActions}>
                 <button
                   type="button"
@@ -397,7 +406,7 @@ export default function Cart() {
                 >
                   Back to Cart
                 </button>
-                
+
                 <button
                   type="submit"
                   className={styles.checkoutButton}
@@ -408,21 +417,25 @@ export default function Cart() {
               </div>
             </form>
           </div>
-          
+
           <div className={styles.orderSummary}>
             <h2>Order Summary</h2>
             <div className={styles.orderItems}>
-              {cartItems.map(item => (
+              {cartItems.map((item) => (
                 <div key={item._id} className={styles.orderItem}>
                   <div className={styles.itemInfo}>
                     <span className={styles.itemName}>{item.name}</span>
-                    <span className={styles.itemQuantity}>x{item.quantity}</span>
+                    <span className={styles.itemQuantity}>
+                      x{item.quantity}
+                    </span>
                   </div>
-                  <span className={styles.itemPrice}>${(item.price * item.quantity).toFixed(2)}</span>
+                  <span className={styles.itemPrice}>
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </span>
                 </div>
               ))}
             </div>
-            
+
             <div className={styles.orderTotals}>
               <div className={styles.totalRow}>
                 <span>Subtotal</span>
@@ -440,9 +453,16 @@ export default function Cart() {
                 <>
                   <div className={styles.totalRow}>
                     <span>Amount Paid</span>
-                    <span>${amountPaid.toFixed(2)}</span>
+                    <span>
+                      $
+                      {(amountPaid === "" ? 0 : parseFloat(amountPaid)).toFixed(
+                        2
+                      )}
+                    </span>
                   </div>
-                  <div className={`${styles.totalRow} ${styles.remainingBalance}`}>
+                  <div
+                    className={`${styles.totalRow} ${styles.remainingBalance}`}
+                  >
                     <span>Remaining</span>
                     <span>${calculateRemainingBalance().toFixed(2)}</span>
                   </div>
@@ -465,8 +485,8 @@ export default function Cart() {
               Clear Cart
             </button>
           )}
-          <button 
-            className={styles.inventoryNavBtn} 
+          <button
+            className={styles.inventoryNavBtn}
             onClick={handleCheckout}
             disabled={cartItems.length === 0}
           >
@@ -475,7 +495,7 @@ export default function Cart() {
           </button>
         </div>
       </div>
-      
+
       {loading ? (
         <div className={styles.loadingState}>Loading cart...</div>
       ) : error ? (
@@ -510,22 +530,36 @@ export default function Cart() {
                                 className={styles.productImage}
                               />
                             </div>
-                            <span className={styles.productName}>{item.name}</span>
+                            <span className={styles.productName}>
+                              {item.name}
+                            </span>
                           </div>
                         </td>
                         <td>${item.price.toFixed(2)}</td>
                         <td className={styles.quantityCell}>
                           <div className={styles.quantityControls}>
-                            <button 
-                              onClick={() => handleQuantityChange(item._id, item.quantity - 1)}
+                            <button
+                              onClick={() =>
+                                handleQuantityChange(
+                                  item._id,
+                                  item.quantity - 1
+                                )
+                              }
                               disabled={item.quantity <= 1}
                               className={styles.quantityBtn}
                             >
                               -
                             </button>
-                            <span className={styles.quantityValue}>{item.quantity}</span>
-                            <button 
-                              onClick={() => handleQuantityChange(item._id, item.quantity + 1)}
+                            <span className={styles.quantityValue}>
+                              {item.quantity}
+                            </span>
+                            <button
+                              onClick={() =>
+                                handleQuantityChange(
+                                  item._id,
+                                  item.quantity + 1
+                                )
+                              }
                               className={styles.quantityBtn}
                             >
                               +
@@ -554,7 +588,7 @@ export default function Cart() {
                 </tbody>
               </table>
             </div>
-            
+
             {totalItems > 0 && (
               <div className={styles.tableFooter}>
                 <h2>
@@ -579,7 +613,7 @@ export default function Cart() {
               </div>
             )}
           </div>
-          
+
           {cartItems.length > 0 && (
             <div className={styles.cartSummary}>
               <h2 className={styles.summaryTitle}>Cart Summary</h2>
@@ -595,21 +629,27 @@ export default function Cart() {
                 <span>Total:</span>
                 <span>${total.toFixed(2)}</span>
               </div>
-              {cart?.paymentStatus && cart.paymentStatus !== 'unpaid' && (
+              {cart?.paymentStatus && cart.paymentStatus !== "unpaid" && (
                 <>
                   <div className={styles.summaryRow}>
                     <span>Amount Paid:</span>
                     <span>${(cart.amountPaid || 0).toFixed(2)}</span>
                   </div>
-                  {cart.paymentStatus === 'partial' && (
-                    <div className={`${styles.summaryRow} ${styles.remainingBalance}`}>
+                  {cart.paymentStatus === "partial" && (
+                    <div
+                      className={`${styles.summaryRow} ${styles.remainingBalance}`}
+                    >
                       <span>Remaining Balance:</span>
                       <span>${(cart.remainingBalance || 0).toFixed(2)}</span>
                     </div>
                   )}
                   <div className={styles.summaryRow}>
                     <span>Payment Status:</span>
-                    <span className={`${styles.paymentStatus} ${styles[cart.paymentStatus]}`}>
+                    <span
+                      className={`${styles.paymentStatus} ${
+                        styles[cart.paymentStatus]
+                      }`}
+                    >
                       {cart.paymentStatus.toUpperCase()}
                     </span>
                   </div>

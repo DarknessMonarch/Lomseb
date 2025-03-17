@@ -139,10 +139,11 @@
   }
 
   .quantityInput {
-    width: 30px;
+    width: 100%;
     height: 30px;
     border: none;
     padding: 0 10px;
+    min-width: 30px;
     border-radius: 5px;
     box-shadow: var(--depth-shadow);
     color: var(--return-color-light);
