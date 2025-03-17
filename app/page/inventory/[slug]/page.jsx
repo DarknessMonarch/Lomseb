@@ -14,7 +14,7 @@ import {
 import { FiDownload as DownloadIcon } from "react-icons/fi";
 import { BsCartPlus as CartIcon } from "react-icons/bs";
 import { useProductStore } from "@/app/store/Product";
-import { useCartStore } from "@/app/store/Cart"; 
+import { useCartStore } from "@/app/store/Cart";
 import styles from "@/app/styles/singleProductCard.module.css";
 
 export default function ProductDetail() {
@@ -25,7 +25,8 @@ export default function ProductDetail() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   // Get product data and functions from the store
-  const { singleProduct, loading, error, getProductById, deleteProduct } = useProductStore();
+  const { singleProduct, loading, error, getProductById, deleteProduct } =
+    useProductStore();
 
   // Get cart functions from the cart store
   const { addToCart, loading: cartLoading } = useCartStore();
@@ -41,13 +42,15 @@ export default function ProductDetail() {
   const goBack = () => router.back();
 
   const handleDeleteProduct = async () => {
-    if (!window.confirm(`Are you sure you want to delete ${singleProduct.name}?`)) {
+    if (
+      !window.confirm(`Are you sure you want to delete ${singleProduct.name}?`)
+    ) {
       return;
     }
 
     try {
       setIsDeleting(true);
-      
+
       if (!singleProduct?._id) {
         toast.error("Product not found");
         return;
@@ -208,8 +211,8 @@ export default function ProductDetail() {
           />
           <span>Edit</span>
         </button>
-        <button 
-          className={`${styles.inventoryNavBtn} ${styles.deleteBtn}`} 
+        <button
+          className={`${styles.inventoryNavBtn} ${styles.deleteBtn}`}
           onClick={handleDeleteProduct}
           disabled={isDeleting}
         >
@@ -223,15 +226,19 @@ export default function ProductDetail() {
 
       <div className={styles.content}>
         <div className={styles.cardImage}>
-          <Image
-            className={styles.productImage}
-            src={singleProduct.image}
-            alt={singleProduct.name}
-            fill
-            sizes="100%"
-            objectFit="cover"
-            priority={true}
-          />
+          {singleProduct.image ? (
+            <Image
+              className={styles.productImage}
+              src={singleProduct.image}
+              alt={singleProduct.name}
+              fill
+              sizes="100%"
+              objectFit="cover"
+              priority={true}
+            />
+          ) : (
+            <div className={styles.noImage}>No image available</div>
+          )}
           <div className={styles.productName}>
             <h2>{singleProduct.name}</h2>
           </div>

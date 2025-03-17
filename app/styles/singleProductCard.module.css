@@ -28,11 +28,8 @@
     justify-content: center;
     color: var(--background-color);
     font-family: var(--font-outfit-medium);
-    background-color: var(--tertiary-color);
-  }
-
-  .backButton:hover {
-    background-color: var(--tertiary-color-light);
+    background-color: var(--return-color);
+    background: var(--linear-background);
   }
 
   .backButtonIcon {
@@ -66,7 +63,7 @@
     background: transparent;
     color: var(--return-color);
     font-family: var(--font-outfit-medium);
-    border: 1px solid var(--tertiary-color);
+    border: 1px solid var(--return-color);
   }
 
   .inventoryNavBtn:hover {
@@ -77,7 +74,7 @@
 
   .editIcon {
     font-size: 20px;
-    color: var(--tertiary-color);
+    color: var(--return-color);
   }
 
   .inventoryNavBtn:hover .editIcon {
@@ -113,7 +110,7 @@
     font-size: 0.8rem;
     position: absolute;
     border-radius: 10px;
-    color: var(--tertiary-color);
+    color: var(--return-color);
     box-shadow: var(--box-shadow);
     font-family: var(--font-poppins-light);
     background-color: var(--background-color);
@@ -148,7 +145,7 @@
     padding: 0 10px;
     border-radius: 5px;
     box-shadow: var(--depth-shadow);
-    color: var(--tertiary-color-light);
+    color: var(--return-color-light);
   }
 
   .quantityBtn {
@@ -186,7 +183,7 @@
 
   .quantityIcon {
     font-size: 20px;
-    color: var(--tertiary-color);
+    color: var(--return-color);
   }
 
   .quantityBtn:hover .quantityIcon {

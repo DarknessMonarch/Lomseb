@@ -71,19 +71,19 @@ const FileInput = ({ onChange, idImage, label, required }) => {
 };
 
 const categoryOptions = [
-  { value: "tires", label: "Tires" },
-  { value: "electronics", label: "Electronics" },
-  { value: "accessories", label: "Accessories" },
-  { value: "parts", label: "Parts" },
-  { value: "tools", label: "Tools" },
+  { value: "crude", label: "Crude Oil" },
+  { value: "gasoline", label: "Gasoline" },
+  { value: "diesel", label: "Diesel" },
+  { value: "lubricants", label: "Lubricants" },
+  { value: "additives", label: "Additives" },
 ];
 
 const unitOptions = [
-  { value: "pcs", label: "Pieces" },
-  { value: "kg", label: "Kilograms" },
-  { value: "boxes", label: "Boxes" },
+  { value: "barrels", label: "Barrels" },
   { value: "liters", label: "Liters" },
-  { value: "sets", label: "Sets" },
+  { value: "gallons", label: "Gallons" },
+  { value: "tons", label: "Metric Tons" },
+  { value: "cases", label: "Cases" },
 ];
 
 // Function to prepare form data for submission

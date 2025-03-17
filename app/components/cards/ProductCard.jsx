@@ -103,18 +103,22 @@ export default function ProductCard({
 
   return (
     <div className={styles.cardContainer} onClick={openProduct}>
-      <div className={styles.cardImage}>
-        <Image
-          className={styles.productImage}
-          src={image}
-          alt="Product Image"
-          fill
-          sizes="100%"
-          objectFit="cover"
-          priority={true}
-        />
-        <span>${sellingPrice}</span>
-      </div>
+     <div className={styles.cardImage}>
+  {image ? (
+    <Image
+      className={styles.productImage}
+      src={image}
+      alt="Product Image"
+      fill
+      sizes="100%"
+      style={{ objectFit: "cover" }} 
+      priority={true}
+    />
+  ) : (
+    <div className={styles.noImage}>No image available</div>
+  )}
+  <span>${sellingPrice}</span>
+</div>
       <div className={styles.cardBottom}>
         <div className={styles.productDetails}>
           <h1>{name}</h1>
@@ -173,14 +177,16 @@ export default function ProductCard({
         </div>
 
         <div className={styles.qrCode}>
-          <Image
-            src={qrCode}
-            alt={name}
-            width={100}
-            height={100}
-            className={styles.qrImage}
-          />
-        </div>
+  {qrCode ? (
+    <Image
+      src={qrCode}
+      alt={name || "QR Code"}
+      width={100}
+      height={100}
+      className={styles.qrImage}
+    />
+  ) : null}
+</div>
       </div>
     </div>
   );
