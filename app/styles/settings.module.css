@@ -304,13 +304,14 @@
     border-radius: 10px;
     font-weight: 500;
     color: var(--background-color);
-    background-color: var(--tertiary-color);
+    background-color: var(--return-color);
+  background: var(--linear-background);
     transition: all 0.3s ease;
     border: none;
   }
 
   .formsettingButton:hover {
-    background-color: var(--tertiary-color-light);
+
     transform: translateY(-2px);
   }
 
@@ -337,7 +338,6 @@
     border-radius: 15px;
     flex-direction: column;
     border: 1px solid var(--return-color);
-    background-color: rgba(255, 107, 107, 0.05);
     box-shadow: var(--box-shadow);
   }
 
@@ -345,12 +345,12 @@
     font-size: 1.2rem;
     color: var(--return-color);
     font-weight: bold;
-    border-bottom: 1px solid rgba(255, 107, 107, 0.3);
+    border-bottom: 1px solid var(--return-color);
     padding-bottom: 10px;
   }
   
   .dangerText {
-    color: var(--primary-color);
+    color: var(--return-color);
     font-size: 0.9rem;
     line-height: 1.5;
   }
@@ -359,34 +359,38 @@
     display: flex;
     flex-direction: column;
     color: var(--primary-color);
+    border: 1px solid var(--return-color);
+
     gap: 20px;
-    background-color: rgba(255, 107, 107, 0.1);
     padding: 20px;
     border-radius: 10px;
   }
 
   .deleteInfo {
-    gap: 15px;
+    gap: 5px;
     display: flex;
     text-align: left;
     align-items: center;
   }
   
   .deleteIcon {
-    font-size: 40px;
+    font-size: 60px;
     color: var(--return-color);
     min-width: 40px;
   }
   
   .deleteInfo div h3 {
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: .8rem;
     margin-bottom: 5px;
+    font-family: var(--font-poppins-regular);
+
+    color: var(--return-color);
+
   }
   
   .deleteInfo div p {
     font-size: 0.9rem;
-    color: var(--primary-light-color);
+    color: var(--return-color);
   }
   
   .deleteButton {
@@ -398,13 +402,11 @@
     font-weight: 500;
     color: white;
     background-color: var(--return-color);
+    background: var(--linear-background);
     transition: all 0.3s ease;
     border: none;
   }
 
-  .deleteButton:hover {
-    background-color: #ff5252;
-  }
 
   .deleteButton:disabled {
     opacity: 0.7;

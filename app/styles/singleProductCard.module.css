@@ -64,15 +64,15 @@
     align-items: center;
     justify-content: center;
     background: transparent;
-    color: var(--tertiary-color);
+    color: var(--return-color);
     font-family: var(--font-outfit-medium);
     border: 1px solid var(--tertiary-color);
   }
 
   .inventoryNavBtn:hover {
     color: var(--background-color);
-    background-color: var(--tertiary-color-light);
-    border: 1px solid var(--tertiary-color-light);
+    background-color: var(--return-color);
+    background: var(--linear-background);
   }
 
   .editIcon {
@@ -165,7 +165,8 @@
 
   .quantityBtn:hover {
     color: var(--background-color);
-    background-color: var(--tertiary-color-light);
+    background-color: var(--return-color);
+    background: var(--linear-background);
   }
 
   .deleteBtn {

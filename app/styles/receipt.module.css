@@ -259,13 +259,12 @@
 }
 
 .actionButton {
-  background-color: var(--tertiary-color);
+  background-color: var(--return-color);
+  background: var(--linear-background);
   color: var(--background-color);
 }
 
-.actionButton:hover {
-  background-color: var(--tertiary-color-light);
-}
+
 
 .actionButton:disabled {
   opacity: 0.7;
@@ -273,8 +272,9 @@
 }
 
 .continueButton {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: var(--return-color);
+  background: var(--linear-background);
+  color: var(--background-color);
 }
 
 .continueButton:hover {

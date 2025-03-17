@@ -97,8 +97,8 @@
   
   .backButton {
     padding: 0.8rem 1.5rem;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
+    background-color: var(--return-color);
+    background: var(--linear-background);
     border-radius: 4px;
     color: #333;
     font-weight: 500;
@@ -106,13 +106,12 @@
     transition: all 0.2s;
   }
   
-  .backButton:hover {
-    background-color: #eaeaea;
-  }
+
   
   .checkoutButton {
     padding: 0.8rem 1.5rem;
-    background-color: #4caf50;
+    background-color: var(--return-color);
+    background: var(--linear-background);
     border: none;
     border-radius: 4px;
     color: white;
@@ -121,9 +120,7 @@
     transition: all 0.2s;
   }
   
-  .checkoutButton:hover {
-    background-color: #45a049;
-  }
+
   
   .checkoutButton:disabled {
     background-color: #cccccc;
@@ -220,7 +217,8 @@
   
   .returnToShopBtn {
     padding: 0.8rem 1.5rem;
-    background-color: #2196f3;
+    background-color: var(--return-color);
+    background: var(--linear-background);
     border: none;
     border-radius: 4px;
     color: white;
@@ -229,9 +227,6 @@
     transition: all 0.2s;
   }
   
-  .returnToShopBtn:hover {
-    background-color: #0b7dda;
-  }
   
   /* Additional styles for checkout in cart page */
   .checkoutTitle {

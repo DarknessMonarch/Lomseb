@@ -11,13 +11,14 @@
   border-radius: 4px;
   flex-direction: column;
   justify-content: center;
-  color: var(--tertiary-color);
-  border: 1px solid var(--tertiary-color);
+  color: var(--return-color);
+  border: 1px solid var(--return-color);
 
 }
 
 .dropdownContainer:hover {
-  background-color: var(--tertiary-color-light);
+  background: var(--linear-background);
+  background-color: var(--return-color);
   color: var(--background-color);
 }
 

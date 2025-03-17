@@ -42,11 +42,12 @@
     justify-content: center;
     color: var(--background-color);
     font-family: var(--font-outfit-medium);
-    background-color: var(--tertiary-color);
+    background-color: var(--return-color);
+  background: var(--linear-background);
   }
 
   .inventoryNavBtn:hover {
-    background-color: var( --tertiary-color-light);
+    background-color: var( --return-color);
   }
 
   .inventoryNavBtn span {
@@ -83,6 +84,244 @@
     height: 350px;
     border-radius: 15px;
   }
+
+  
+.tableContainer {
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.inventoryTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.inventoryTable th {
+  background-color: #f7f9fc;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #4a5568;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.inventoryTable td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #2d3748;
+}
+
+.inventoryTable tr:hover {
+  background-color: #f7fafc;
+}
+
+.sortableHeader {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sortIcon {
+  margin-left: 8px;
+  font-size: 12px;
+  color: #718096;
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.actionButton:hover {
+  background-color: #edf2f7;
+  color: #2c5282;
+}
+
+.actionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.imageCell {
+  width: 60px;
+}
+
+.productImageContainer {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productTableImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noImage {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #edf2f7;
+  color: #a0aec0;
+  font-size: 10px;
+  border-radius: 4px;
+}
+
+.quantityCell {
+  text-align: center;
+}
+
+.priceCell {
+  text-align: right;
+}
+
+.lowStockIndicator {
+  color: #e53e3e;
+  font-weight: 500;
+}
+
+.categoryCell {
+  text-align: center;
+}
+
+.categoryBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #ebf8ff;
+  color: #2b6cb0;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tableLoading {
+  width: 100%;
+  padding: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+}
+
+.paginationButton {
+  padding: 6px 12px;
+  background-color: #f7f9fc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background-color: #edf2f7;
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 4px;
+}
+
+.pageNumber {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: none;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pageNumber:hover {
+  background-color: #edf2f7;
+}
+
+.activePage {
+  background-color: #4299e1;
+  color: white;
+  border-color: #4299e1;
+}
+
+.activePage:hover {
+  background-color: #3182ce;
+}
+
+.itemsPerPageSelector {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px 16px;
+  gap: 8px;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.itemsPerPageSelector select {
+  padding: 4px 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  background-color: white;
+}
 }
 
 /* using it as global style for larger devices  */

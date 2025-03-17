@@ -38,19 +38,21 @@
     align-items: center;
     border-radius: 4px;
     justify-content: center;
-    color: var(--tertiary-color);
-    border: 1px solid var(--tertiary-color);
+    color: var(--return-color);
+    
+    border: 1px solid var(--return-color);
     font-family: var(--font-outfit-medium);
   }
 
   .saveButton:hover {
-    background-color: var(--tertiary-color-light);
+    background-color: var(--return-color);
+    background: var(--linear-background);
     color: var(--background-color);
   }
 
   .saveButtonIcon {
     font-size: 20px;
-    color: var(--tertiary-color);
+    color: var(--return-color);
   }
 
   .saveButton:hover .saveButtonIcon {
@@ -69,20 +71,13 @@
     justify-content: center;
     color: var(--background-color);
     font-family: var(--font-outfit-medium);
-    background-color: var(--tertiary-color);
-  }
-
-  .backButton:hover {
-    background-color: var(--tertiary-color-light);
+    background-color: var(--return-color);
+    background: var(--linear-background);
+    
   }
 
   .backButtonIcon {
     font-size: 20px;
-    color: var(--background-color);
-  }
-
-  .backButton {
-    cursor: pointer;
     color: var(--background-color);
   }
 
@@ -156,11 +151,11 @@
     min-height: 60px;
     border-radius: 15px;
     color: var(--primary-color);
-    background-color: var(--tertiary-color);
+    background-color: var(--return-color);
   }
 
   .addButton:hover {
-    background-color: var(--tertiary-light-color);
+    background-color: var(--return-light-color);
   }
 
   .addIcon {
@@ -249,7 +244,8 @@
     cursor: pointer;
     border-radius: 5px;
     color: var(--background-color);
-    background-color: var(--tertiary-color); 
+    background-color: var(--return-color);
+    background: var(--linear-background);
   }
 
   .addIcon{
@@ -287,7 +283,7 @@
 
   .customFieldInfo span {
     font-size: 1rem;
-    color: var(--tertiary-color);
+    color: var(--return-color);
     font-family: var(--font-poppins-light);
   }
 
@@ -307,12 +303,11 @@
     min-height: 40px;
     border-radius: 5px;
     color: var(--background-color);
-    background-color: var(--tertiary-color);
+    background-color: var(--return-color);
+    background: var(--linear-background);
   }
 
-  .submitButton:hover {
-    background-color: var(--tertiary-color-light);
-  }
+
 }
 
 /* using it as global style for larger devices  */

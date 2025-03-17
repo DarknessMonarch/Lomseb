@@ -25,7 +25,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--tertiary-color);
+  background-color: var(--return-color);
+  background: var(--linear-background);
   color: var(--background-color);
   border: none;
   border-radius: 6px;
@@ -36,9 +37,7 @@
   transition: background-color 0.2s;
 }
 
-.inventoryNavBtn:hover {
-  background-color: var(--tertiary-color-light);
-}
+
 
 .addIcon {
   font-size: 16px;
@@ -288,8 +287,8 @@ tr:has(.fullBadge) .feedback {
 
 .backButton {
   padding: 0.8rem 1.5rem;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
+  background-color: var(--return-color);
+  background: var(--linear-background);
   border-radius: 4px;
   color: #333;
   font-weight: 500;
@@ -297,13 +296,12 @@ tr:has(.fullBadge) .feedback {
   transition: all 0.2s;
 }
 
-.backButton:hover {
-  background-color: #eaeaea;
-}
+
 
 .checkoutButton {
   padding: 0.8rem 1.5rem;
-  background-color: #4caf50;
+  background-color: var(--return-color);
+  background: var(--linear-background);
   border: none;
   border-radius: 4px;
   color: white;
@@ -312,9 +310,7 @@ tr:has(.fullBadge) .feedback {
   transition: all 0.2s;
 }
 
-.checkoutButton:hover {
-  background-color: #45a049;
-}
+
 
 .checkoutButton:disabled {
   background-color: #cccccc;
@@ -411,7 +407,8 @@ tr:has(.fullBadge) .feedback {
 
 .returnToShopBtn {
   padding: 0.8rem 1.5rem;
-  background-color: #2196f3;
+  background-color: var(--return-color);
+  background: var(--linear-background);
   border: none;
   border-radius: 4px;
   color: white;
@@ -421,7 +418,7 @@ tr:has(.fullBadge) .feedback {
 }
 
 .returnToShopBtn:hover {
-  background-color: #0b7dda;
+  background-color: var(--return-color);
 }
 
 /* Additional styles for checkout in cart page */

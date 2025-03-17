@@ -92,12 +92,10 @@
     justify-content: center;
     color: var(--background-color);
     font-family: var(--font-outfit-medium);
-    background-color: var(--tertiary-color);
+    background-color: var(--return-color);
+  background: var(--linear-background);
   }
 
-  .cartButton:hover {
-    background-color: var(--tertiary-color-light);
-  }
 
   .quantityIcon {
     font-size: 20px;

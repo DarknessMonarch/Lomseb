@@ -76,10 +76,10 @@
   
   /* Corner markers */
   background-image: 
-    linear-gradient(to right, #0066ff 20px, transparent 20px),
-    linear-gradient(to bottom, #0066ff 20px, transparent 20px),
-    linear-gradient(to left, #0066ff 20px, transparent 20px),
-    linear-gradient(to top, #0066ff 20px, transparent 20px);
+    linear-gradient(to right, #ed452bff 20px, transparent 20px),
+    linear-gradient(to bottom, #ed452bff 20px, transparent 20px),
+    linear-gradient(to left, #ed452bff 20px, transparent 20px),
+    linear-gradient(to top, #ed452bff 20px, transparent 20px);
   background-position: 
     top left, top right,
     bottom right, bottom left;
@@ -108,7 +108,7 @@
   display: inline-block;
   width: 10px;
   height: 10px;
-  background-color: #0066ff;
+  background-color: #ed452bff;
   border-radius: 50%;
   margin-right: 10px;
   animation: pulse 1.5s infinite;
@@ -226,7 +226,7 @@
 .productPrice {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0066ff;
+  color: #ed452bff;
   margin: 0 0 15px 0;
 }
 
@@ -307,7 +307,7 @@
   flex: 1;
   height: 48px;
   border-radius: 12px;
-  background-color: #0066ff;
+  background-color: #ed452bff;
   color: white;
   border: none;
   font-size: 1rem;
@@ -361,7 +361,7 @@
   width: 40px;
   height: 40px;
   border: 3px solid rgba(0, 102, 255, 0.1);
-  border-left-color: #0066ff;
+  border-left-color: #ed452bff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 16px;

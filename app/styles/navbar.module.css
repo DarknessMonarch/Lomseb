@@ -57,7 +57,6 @@
     border-radius: 4px;
     align-items: center;
     background-color: var(--background-color-dark);
-
   }
 
   .searchIcon {
@@ -174,11 +173,8 @@
     justify-content: center;
     color: var(--background-color);
     font-family: var(--font-outfit-medium);
-    background-color: var(--tertiary-color);
-  }
-
-  .userButton:hover {
-    background-color: var( --tertiary-color-light);
+    background-color: var(--return-color);
+    background: var(--linear-background);
   }
 
   .userButton span {
@@ -189,8 +185,6 @@
   .userIcon {
     font-size: 20px;
   }
-
-
 }
 
 /* using it as global style for larger devices  */
@@ -218,6 +212,4 @@
   .mobileSearch {
     display: none;
   }
-
- 
 }

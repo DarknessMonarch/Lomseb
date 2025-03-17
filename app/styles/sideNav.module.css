@@ -58,7 +58,7 @@
   }
 
   .toggleMenuIcon:hover {
-    color: var(--tertiary-color);
+    color: var(--return-color);
   }
 
   .hideSideNav {
@@ -98,11 +98,11 @@
   }
 
   .sideLink:hover .linkIcon {
-    color: var(--tertiary-color);
+    color: var(--return-color);
   }
 
   .sideLink:hover h1 {
-    color: var(--tertiary-color);
+    color: var(--return-color);
   }
 
   .innerSideLink {
@@ -113,16 +113,16 @@
   }
 
   .activeLink .linkIcon {
-    color: var(--tertiary-color);
+    color: var(--return-color);
   }
 
   .activeLink h1 {
-    color: var(--tertiary-color);
+    color: var(--return-color);
   }
 
   .linkIcon {
     font-size: 20px;
-    color: var(--light-color);
+   
   }
 
   .sideBottomContainer {

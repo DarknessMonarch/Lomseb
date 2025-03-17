@@ -296,22 +296,21 @@
 }
 
 .toggleButton {
-  background-color: rgba(19, 102, 217, 0.1);
-  color: var(--tertiary-color);
+  background-color: var(--return-color);
+  background: var(--linear-background);
 }
 
 .toggleButton:hover {
-  background-color: var(--tertiary-color);
   color: white;
 }
 
 .deleteButton {
-  background-color: rgba(247, 53, 53, 0.1);
-  color: var(--return-color);
+  background-color: var(--return-color);
+  background: var(--linear-background);
 }
 
 .deleteButton:hover {
-  background-color: var(--return-color);
+
   color: white;
 }
 
@@ -395,15 +394,14 @@
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   background-color: var(--return-color);
+  background: var(--linear-background);
   color: white;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.confirmButton:hover {
-  background-color: var(--return-color-light);
-}
+
 
 .unauthorizedMessage {
   text-align: center;

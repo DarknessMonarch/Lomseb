@@ -32,7 +32,7 @@
   }
 
   .actionButton:hover {
-    color: var(--tertiary-color);
+    color: var(--return-color);
   }
 
   .alertNotificationComponent {

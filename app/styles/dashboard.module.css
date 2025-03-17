@@ -59,6 +59,7 @@
     align-items: center;
     gap: 8px;
     background-color: var(--return-color);
+    background: var(--linear-background);
     color: var(--background-color);
     border: none;
     border-radius: 5px;
@@ -68,9 +69,7 @@
     transition: background-color 0.2s ease-in-out;
   }
 
-  .resetButton:hover {
-    background-color: var(--return-color-light);
-  }
+
 
   .resetButton:disabled {
     opacity: 0.7;
@@ -398,7 +397,8 @@
     margin-left: auto;
     padding: 16px;
     border: none;
-    background: none;
+    background-color: var(--return-color);
+    background: var(--linear-background);
     cursor: pointer;
     color: var(--tertiary-color);
     font-size: 14px;
@@ -453,7 +453,8 @@
   }
 
   .restockButton {
-    background-color: var(--tertiary-color-light);
+    background-color: var(--return-color);
+  background: var(--linear-background);
     color: white;
     border: none;
     border-radius: 6px;
@@ -465,9 +466,7 @@
     transition: background-color 0.2s ease;
   }
 
-  .restockButton:hover {
-    background-color: var(--tertiary-color);
-  }
+
 
   .restockButton svg {
     margin-right: 6px;
@@ -555,22 +554,18 @@
   }
 
   .viewButton {
-    background-color: rgba(59, 130, 246, 0.1);
-    color: rgb(59, 130, 246);
+    background-color: var(--return-color);
+    background: var(--linear-background);
   }
 
-  .viewButton:hover {
-    background-color: rgba(59, 130, 246, 0.2);
-  }
+
 
   .reminderButton {
-    background-color: rgba(239, 68, 68, 0.1);
-    color: rgb(239, 68, 68);
+    background-color: var(--return-color);
+  background: var(--linear-background);
   }
 
-  .reminderButton:hover {
-    background-color: rgba(239, 68, 68, 0.2);
-  }
+
 
   .reminderButton:disabled {
     opacity: 0.6;
