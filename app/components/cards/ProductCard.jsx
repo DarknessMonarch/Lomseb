@@ -36,6 +36,7 @@ export default function ProductCard({
 
     // Use the cart store function if provided, otherwise use local fallback
     if (onAddToCart) {
+      // Pass the orderQuantity to the parent component
       onAddToCart(_id, orderQuantity);
       
       // Set UI feedback state

@@ -24,14 +24,14 @@ export default function ProductDetail() {
   const [addedToCart, setAddedToCart] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Get product data and functions from the store
+
   const { singleProduct, loading, error, getProductById, deleteProduct } =
     useProductStore();
 
-  // Get cart functions from the cart store
+  
   const { addToCart, loading: cartLoading } = useCartStore();
 
-  // Fetch product data when component mounts
+
   useEffect(() => {
     if (slug) {
       getProductById(slug);
@@ -109,7 +109,7 @@ export default function ProductDetail() {
     }
   };
 
-  // Show loading state
+
   if (loading) {
     return (
       <div className={styles.mainContent}>

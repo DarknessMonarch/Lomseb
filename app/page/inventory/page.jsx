@@ -7,7 +7,7 @@ import { IoAdd } from "react-icons/io5";
 import Filter from "@/app/components/Filter";
 import Nothing from "@/app/components/Nothing";
 import { useProductStore } from "@/app/store/Product";
-import { useCartStore } from "@/app/store/Cart"; 
+import { useCartStore } from "@/app/store/Cart";
 import ProductCard from "@/app/components/cards/ProductCard";
 import styles from "@/app/styles/inventory.module.css";
 import EmptyProductImg from "@/public/assets/empty.png";
@@ -17,16 +17,16 @@ export default function Inventory() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  
+
   // Get products from store instead of static data
   const { products, loading, error, getProducts } = useProductStore();
-  
+
   // Get cart functions from the cart store
   const { addToCart, loading: cartLoading } = useCartStore();
-  
+
   // Track which product is currently being added to cart
   const [addingToCartId, setAddingToCartId] = useState(null);
-  
+
   useEffect(() => {
     // Fetch products when component mounts
     getProducts();
@@ -41,7 +41,9 @@ export default function Inventory() {
 
   // Generate filter options from actual product categories
   const filterOptions = useMemo(() => {
-    const categories = [...new Set(products.map((product) => product.category))];
+    const categories = [
+      ...new Set(products.map((product) => product.category)),
+    ];
     return [
       { value: "all", label: "All" },
       ...categories.map((cat) => ({
@@ -89,9 +91,9 @@ export default function Inventory() {
   const handleAddToCart = async (productId, quantity = 1) => {
     try {
       setAddingToCartId(productId);
-      
+
       const result = await addToCart(productId, quantity);
-      
+
       if (result.success) {
         toast.success("Product added to cart");
       } else {
@@ -190,7 +192,9 @@ export default function Inventory() {
                 key={data._id}
                 {...data}
                 onClick={() => handleCardClick(data._id)}
-                onAddToCart={() => handleAddToCart(data._id, 1)}
+                onAddToCart={(productId, quantity) =>
+                  handleAddToCart(productId, quantity)
+                }
                 isAddingToCart={addingToCartId === data._id}
                 cartLoading={cartLoading && addingToCartId === data._id}
               />
