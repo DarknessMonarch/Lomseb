@@ -12,6 +12,7 @@ import styles from "@/app/styles/sideNav.module.css";
 import { IoMdClose as CloseIcon } from "react-icons/io";
 import { useEffect, useState, useCallback } from "react";
 import { IoCartOutline as CartIcon } from "react-icons/io5";
+import { FaMoneyBillTrendUp as ExpenditureIcon } from "react-icons/fa6";
 import { MdOutlineManageAccounts as AccountIcon } from "react-icons/md";
 import { HiOutlineLogout as LogoutIcon } from "react-icons/hi";
 import { TbReportAnalytics as ReportIcon } from "react-icons/tb";
@@ -104,6 +105,7 @@ export default function SideNav() {
               />
             </div>
           )}
+
           {isAdmin && (
             <Link href="/page/dashboard/" className={styles.sideLink}>
               <div
@@ -180,6 +182,24 @@ export default function SideNav() {
             </Link>
           )}
 
+          <Link href="/page/expenditure" className={styles.sideLink}>
+            <div
+              className={`${styles.innerSideLink} ${
+                pathname === "/page/expenditure" ||
+                pathname.startsWith("/page/expenditure/")
+                  ? styles.activeLink
+                  : ""
+              }`}
+            >
+              <ExpenditureIcon
+                alt="debt icon"
+                aria-label="debt icon"
+                className={styles.linkIcon}
+              />
+              <h1>Spending</h1>
+            </div>
+          </Link>
+
           <Link href="/page/debt" className={styles.sideLink}>
             <div
               className={`${styles.innerSideLink} ${
@@ -196,7 +216,6 @@ export default function SideNav() {
               <h1>Debt</h1>
             </div>
           </Link>
-
 
           <Link href="/page/scan" className={styles.sideLink}>
             <div
