@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "@/app/styles/dropdown.module.css";
+import styles from "@/app/styles/expenditureDropdown.module.css";
 import { RiArrowDropDownLine as DropdownIcon  } from "react-icons/ri";
 export default function Dropdown({
   options = [],

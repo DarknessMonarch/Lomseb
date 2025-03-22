@@ -255,8 +255,8 @@ export const useExpenditureStore = create(
         }
       },
       
-      // Complete expenditure (admin only)
-      completeExpenditure: async (id) => {
+      // Delete expenditure
+      deleteExpenditure: async (id) => {
         try {
           set({ loading: true, error: null });
           const accessToken = useAuthStore.getState().accessToken;
@@ -265,8 +265,8 @@ export const useExpenditureStore = create(
             throw new Error("Authentication required");
           }
           
-          const response = await fetch(`${SERVER_API}/expenditures/${id}/complete`, {
-            method: 'PATCH',
+          const response = await fetch(`${SERVER_API}/expenditures/${id}`, {
+            method: 'DELETE',
             headers: {
               Authorization: `Bearer ${accessToken}`,
               'Cache-Control': 'no-cache'
@@ -283,18 +283,16 @@ export const useExpenditureStore = create(
           const data = await response.json();
           
           if (data.success) {
-            // Force statistics refresh
             get().getExpenditureStatistics();
             
-            toast.success("Expenditure completed successfully");
-            return { success: true, data: data.data };
+            toast.success("Expenditure deleted successfully");
+            return { success: true };
           } else {
-            throw new Error(data.message || "Failed to complete expenditure");
+            throw new Error(data.message || "Failed to delete expenditure");
           }
         } catch (error) {
           set({ error: error.message });
-          console.error("Complete expenditure error:", error);
-          toast.error(error.message || "Error completing expenditure");
+          toast.error(error.message || "Error deleting expenditure");
           return { success: false, message: error.message };
         } finally {
           set({ loading: false });

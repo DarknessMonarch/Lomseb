@@ -1,0 +1,72 @@
+@media screen {
+.dropdownContainer {
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  flex-direction: column;
+  color: var(--background-color);
+  background: var(--linear-background);
+}
+
+
+.dropdownContainer span {
+  font-size: 1rem;
+  font-family: var(--font-poppins-light);
+}
+
+
+.dropdownInput {
+  width: 100%;
+  display: flex;
+  min-width: 120px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdownIcon {
+  font-size: 24px;
+}
+
+.dropdownArea{
+  top: 50px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  z-index: 1000;
+  overflow: hidden;
+  overflow-y: auto;
+  max-height: 350px;
+  overflow-x: hidden;
+  position: absolute;
+  border-radius: inherit;
+  flex-direction: column;
+  color: var(--primary-color);
+  box-shadow: var(--box-shadow);
+  background-color: var(--background-color);
+
+}
+
+
+.dropdownArea span {
+  padding: 10px;
+}
+
+.dropdownArea span:hover {
+  border-radius: inherit;
+  color: var(--background-color);
+  background:var(--linear-background); 
+}
+
+
+
+}
+
+/* using it as global style for larger devices  */
+@media only screen and (min-width: 48em) {
+
+}

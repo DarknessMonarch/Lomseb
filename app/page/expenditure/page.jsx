@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { useAuthStore } from "@/app/store/Auth";
+import Dropdown from "@/app/components/ExpenditureDropdown";
 import { useExpenditureStore } from "@/app/store/Expenditure";
 import {
   LineChart,
@@ -33,7 +34,6 @@ export default function ExpenditureDashboard() {
     overview: {
       totalAmount: 0,
       pendingCount: 0,
-      recentCompletedCount: 0,
     },
     categoryData: [],
     employeeData: [],
@@ -66,15 +66,41 @@ export default function ExpenditureDashboard() {
     getAllExpenditures,
     getExpenditureStatistics,
     createExpenditure,
-    updateExpenditure,
     deleteExpenditure,
     approveExpenditure,
-    completeExpenditure,
     loading,
     error,
     expenditureStatistics,
     resetErrors,
   } = useExpenditureStore();
+
+  // Dropdown options
+  const categoryOptions = [
+    { code: "salary", name: "Salary" },
+    { code: "supplies", name: "Supplies" },
+    { code: "utilities", name: "Utilities" },
+    { code: "maintenance", name: "Maintenance" },
+    { code: "miscellaneous", name: "Miscellaneous" },
+  ];
+
+  const allCategoriesOptions = [
+    { code: "", name: "All Categories" },
+    ...categoryOptions
+  ];
+
+  const statusOptions = [
+    { code: "", name: "All Statuses" },
+    { code: "pending", name: "Pending" },
+    { code: "approved", name: "Approved" },
+    { code: "rejected", name: "Rejected" },
+  ];
+
+  const pageSizeOptions = [
+    { code: "5", name: "5" },
+    { code: "10", name: "10" },
+    { code: "20", name: "20" },
+    { code: "50", name: "50" },
+  ];
 
   // Fetch expenditure data on component mount and when date range changes
   useEffect(() => {
@@ -89,7 +115,6 @@ export default function ExpenditureDashboard() {
           endDate: dateRange.endDate,
         });
 
-        // Get all expenditures with filters
         const expendituresResult = await getAllExpenditures({
           startDate: dateRange.startDate,
           endDate: dateRange.endDate,
@@ -99,7 +124,6 @@ export default function ExpenditureDashboard() {
           limit: pageSize,
         });
 
-        // Specifically fetch pending items for admins
         let pendingItems = [];
         if (isAdmin) {
           const pendingResult = await getAllExpenditures({
@@ -177,7 +201,6 @@ export default function ExpenditureDashboard() {
         overview: {
           totalAmount: expenditureStatistics.totalAmount || 0,
           pendingCount: expenditureStatistics.pendingCount || 0,
-          recentCompletedCount: expenditureStatistics.recentCompletedCount || 0,
         },
         categoryData,
         employeeData,
@@ -213,6 +236,14 @@ export default function ExpenditureDashboard() {
       ...prev,
       [name]:
         name === "amount" ? (value === "" ? "" : parseFloat(value)) : value,
+    }));
+  };
+
+  // Handle category selection in form
+  const handleCategorySelect = (option) => {
+    setFormData((prev) => ({
+      ...prev,
+      category: option.code,
     }));
   };
 
@@ -265,7 +296,7 @@ export default function ExpenditureDashboard() {
     }
   };
 
-  // Handle expenditure actions (delete, approve, complete)
+  // Handle expenditure actions (delete, approve)
   const handleExpenditureAction = async (id, action) => {
     try {
       let actionPromise;
@@ -279,10 +310,6 @@ export default function ExpenditureDashboard() {
         case "approve":
           actionPromise = approveExpenditure(id);
           successMessage = "Expenditure approved successfully";
-          break;
-        case "complete":
-          actionPromise = completeExpenditure(id);
-          successMessage = "Expenditure completed successfully";
           break;
         default:
           toast.error("Invalid action");
@@ -338,13 +365,18 @@ export default function ExpenditureDashboard() {
   };
 
   // Handle filter change
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "status") {
-      setFilterStatus(value);
-    } else if (name === "category") {
-      setFilterCategory(value);
-    }
+  const handleFilterStatusSelect = (option) => {
+    setFilterStatus(option.code);
+    setCurrentPage(1);
+  };
+
+  const handleFilterCategorySelect = (option) => {
+    setFilterCategory(option.code);
+    setCurrentPage(1);
+  };
+
+  const handlePageSizeSelect = (option) => {
+    setPageSize(Number(option.code));
     setCurrentPage(1);
   };
 
@@ -519,18 +551,11 @@ export default function ExpenditureDashboard() {
             </div>
             <div className={styles.formGroup}>
               <label>Category *</label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleInputChange}
-                required
-              >
-                <option value="salary">Salary</option>
-                <option value="supplies">Supplies</option>
-                <option value="utilities">Utilities</option>
-                <option value="maintenance">Maintenance</option>
-                <option value="miscellaneous">Miscellaneous</option>
-              </select>
+              <Dropdown
+                options={categoryOptions}
+                onSelect={handleCategorySelect}
+                dropPlaceHolder="Select Category"
+              />
             </div>
             <div className={styles.formGroup}>
               <label>Notes</label>
@@ -576,14 +601,6 @@ export default function ExpenditureDashboard() {
             </div>
             <div className={`${styles.cardLabel} ${styles.orange}`}>
               Pending Approvals
-            </div>
-          </div>
-          <div className={`${styles.overviewCard}`}>
-            <div className={`${styles.cardValue} ${styles.green}`}>
-              {dashboardData.overview.recentCompletedCount.toLocaleString()}
-            </div>
-            <div className={`${styles.cardLabel} ${styles.green}`}>
-              Recently Completed
             </div>
           </div>
         </div>
@@ -703,48 +720,25 @@ export default function ExpenditureDashboard() {
           <h2>{isAdmin ? "All Expenditures" : "My Expenditures"}</h2>
           <div className={styles.tableFilters}>
             <div className={styles.filterGroup}>
-              <select
-                name="status"
-                value={filterStatus}
-                onChange={handleFilterChange}
-                disabled={loading}
-              >
-                <option value="">All Statuses</option>
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-                <option value="completed">Completed</option>
-                <option value="rejected">Rejected</option>
-              </select>
+              <Dropdown
+                options={statusOptions}
+                onSelect={handleFilterStatusSelect}
+                dropPlaceHolder="All Statuses"
+              />
             </div>
             <div className={styles.filterGroup}>
-              <select
-                name="category"
-                value={filterCategory}
-                onChange={handleFilterChange}
-                disabled={loading}
-              >
-                <option value="">All Categories</option>
-                <option value="salary">Salary</option>
-                <option value="supplies">Supplies</option>
-                <option value="utilities">Utilities</option>
-                <option value="maintenance">Maintenance</option>
-                <option value="miscellaneous">Miscellaneous</option>
-              </select>
+              <Dropdown
+                options={allCategoriesOptions}
+                onSelect={handleFilterCategorySelect}
+                dropPlaceHolder="All Categories"
+              />
             </div>
             <div className={styles.filterGroup}>
-              <select
-                value={pageSize}
-                onChange={(e) => {
-                  setPageSize(Number(e.target.value));
-                  setCurrentPage(1); 
-                }}
-                disabled={loading}
-              >
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-              </select>
+              <Dropdown
+                options={pageSizeOptions}
+                onSelect={handlePageSizeSelect}
+                dropPlaceHolder="10"
+              />
             </div>
           </div>
         </div>
@@ -801,31 +795,18 @@ export default function ExpenditureDashboard() {
                           </button>
                         )}
 
-                        {isAdmin && item.status === "approved" && (
+                        {/* Delete action - available to all users for their own expenditures */}
+                        {(isAdmin || item.employeeId === userId) && (
                           <button
                             onClick={() =>
-                              handleExpenditureAction(item._id, "complete")
+                              handleExpenditureAction(item._id, "delete")
                             }
-                            className={`${styles.actionButton} ${styles.completeButton}`}
+                            className={`${styles.actionButton} ${styles.deleteButton}`}
                             disabled={loading}
                           >
-                            Complete
+                            Delete
                           </button>
                         )}
-
-                        {/* Delete action - available to all users for their own expenditures unless completed */}
-                        {item.status !== "completed" &&
-                          (isAdmin || item.employeeId === userId) && (
-                            <button
-                              onClick={() =>
-                                handleExpenditureAction(item._id, "delete")
-                              }
-                              className={`${styles.actionButton} ${styles.deleteButton}`}
-                              disabled={loading}
-                            >
-                              Delete
-                            </button>
-                          )}
                       </td>
                     </tr>
                   ))}
@@ -939,33 +920,19 @@ export default function ExpenditureDashboard() {
                 </button>
               )}
 
-              {isAdmin && activeExpenditure.status === "approved" && (
+              {/* Delete action - available to all users for their own expenditures */}
+              {(isAdmin || activeExpenditure.employeeId === userId) && (
                 <button
                   onClick={() => {
-                    handleExpenditureAction(activeExpenditure._id, "complete");
+                    handleExpenditureAction(activeExpenditure._id, "delete");
                     closeExpenditureDetails();
                   }}
-                  className={`${styles.actionButton} ${styles.completeButton}`}
+                  className={`${styles.actionButton} ${styles.deleteButton}`}
                   disabled={loading}
                 >
-                  Complete
+                  Delete
                 </button>
               )}
-
-              {/* Delete action - available to all users for their own expenditures unless completed */}
-              {activeExpenditure.status !== "completed" &&
-                (isAdmin || activeExpenditure.employeeId === userId) && (
-                  <button
-                    onClick={() => {
-                      handleExpenditureAction(activeExpenditure._id, "delete");
-                      closeExpenditureDetails();
-                    }}
-                    className={`${styles.actionButton} ${styles.deleteButton}`}
-                    disabled={loading}
-                  >
-                    Delete
-                  </button>
-                )}
 
               <button
                 onClick={closeExpenditureDetails}
@@ -1027,7 +994,7 @@ export default function ExpenditureDashboard() {
               <button className={styles.reportButton}>Export Report</button>
             </div>
             <div className={styles.reportCard}>
-              <h3>Budget Compliance</h3>
+              <h3>Budget Compliance</h3>  
               <div className={styles.complianceChart}>
                 <div
                   className={styles.complianceBar}
@@ -1085,14 +1052,11 @@ function calculateForecast() {
   );
   const avgMonthly = totalAmount / data.monthlyData.length;
 
-  // Forecast for next quarter (3 months)
   return Math.round(avgMonthly * 3);
 }
 
-// Budget limit - this would normally come from configuration or API
 const budgetLimit = 50000;
 
-// Export functions
 function handleExportCSV() {
   const expenditures = useExpenditureStore.getState().expenditures?.data || [];
   if (expenditures.length === 0) {
@@ -1100,7 +1064,6 @@ function handleExportCSV() {
     return;
   }
 
-  // Create CSV content
   const header = "Description,Employee,Amount,Category,Date,Status\n";
   const rows = expenditures
     .map(
