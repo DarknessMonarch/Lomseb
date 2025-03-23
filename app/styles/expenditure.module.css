@@ -9,19 +9,6 @@
     gap: 20px;
   }
 
-  .loadingOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    font-family: var(--font-poppins-regular);
-  }
-
   .headerSection {
     justify-content: space-between;
     flex-direction: column;

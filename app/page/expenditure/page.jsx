@@ -30,6 +30,7 @@ export default function ExpenditureDashboard() {
     endDate: new Date().toISOString().split("T")[0],
   });
 
+      
   const [dashboardData, setDashboardData] = useState({
     overview: {
       totalAmount: 0,
@@ -102,19 +103,21 @@ export default function ExpenditureDashboard() {
     { code: "50", name: "50" },
   ];
 
-  // Fetch expenditure data on component mount and when date range changes
   useEffect(() => {
+    let loadingToastId = null;
     const fetchExpenditureData = async () => {
       try {
-        // Show loading toast
-        const loadingToast = toast.loading("Loading expenditure data...");
-
+        // Show loading toast and store its ID
+        loadingToastId = toast.loading("Loading expenditure data...");
+        
+        // The loading state will be managed by the store via the API calls
+  
         // Get expenditure statistics
         const statsResult = await getExpenditureStatistics({
           startDate: dateRange.startDate,
           endDate: dateRange.endDate,
         });
-
+  
         const expendituresResult = await getAllExpenditures({
           startDate: dateRange.startDate,
           endDate: dateRange.endDate,
@@ -123,7 +126,7 @@ export default function ExpenditureDashboard() {
           page: currentPage,
           limit: pageSize,
         });
-
+  
         let pendingItems = [];
         if (isAdmin) {
           const pendingResult = await getAllExpenditures({
@@ -131,32 +134,50 @@ export default function ExpenditureDashboard() {
             page: 1,
             limit: 10,
           });
-
-          if (pendingResult.success) {
+  
+          if (pendingResult && pendingResult.success) {
             pendingItems = pendingResult.data;
           }
         }
-
-        // Dismiss loading toast
-        toast.dismiss(loadingToast);
-
-        if (!statsResult.success || !expendituresResult.success) {
-          toast.error("Failed to load some expenditure data");
-        } else {
-          toast.success("Expenditure data loaded successfully");
+  
+        // Properly dismiss the loading toast
+        if (loadingToastId) {
+          toast.dismiss(loadingToastId);
+          loadingToastId = null;
+        }
+  
+        if (statsResult && statsResult.success) {
+        } else if (statsResult) {
+          toast.error("Failed to load statistics: " + (statsResult.message || "Unknown error"));
+        }
+        
+        if (expendituresResult && expendituresResult.success) {
           if (expendituresResult.data) {
             setExpenditures(expendituresResult.data);
             setTotalPages(expendituresResult.totalPages || 1);
           }
+        } else if (expendituresResult) {
+          toast.error("Failed to load expenditure data: " + (expendituresResult.message || "Unknown error"));
         }
       } catch (err) {
+        
+        if (loadingToastId) {
+          toast.dismiss(loadingToastId);
+        }
+        
         toast.error(
           "Error loading expenditure data: " + (err.message || "Unknown error")
         );
       }
     };
-
+  
     fetchExpenditureData();
+  
+    return () => {
+      if (loadingToastId) {
+        toast.dismiss(loadingToastId);
+      }
+    };
   }, [
     dateRange,
     currentPage,
@@ -169,10 +190,9 @@ export default function ExpenditureDashboard() {
     isAdmin,
   ]);
 
-  // Process data when expenditure statistics change
+
   useEffect(() => {
     if (expenditureStatistics) {
-      // Process category data
       const categoryData = expenditureStatistics.categorySummary
         ? expenditureStatistics.categorySummary.map((item) => ({
             name: item.category,
@@ -180,8 +200,7 @@ export default function ExpenditureDashboard() {
             count: item.count,
           }))
         : [];
-
-      // Process employee data
+  
       const employeeData = expenditureStatistics.employeeSummary
         ? expenditureStatistics.employeeSummary.map((item) => ({
             name: item.employeeName,
@@ -189,17 +208,25 @@ export default function ExpenditureDashboard() {
             count: item.count,
           }))
         : [];
-
-      // Get pending approvals from statistics if available
+  
       const pendingApprovals = expenditureStatistics.pendingExpenditures || [];
-
-      // Process monthly data
+  
       const monthlyData = expenditureStatistics.monthlyData || [];
+  
+      let calculatedTotal = expenditureStatistics.totalAmount || 0;
+      
+      const categoriesTotal = categoryData.reduce((sum, category) => sum + category.value, 0);
+      
+      if (calculatedTotal === 0 || Math.abs(calculatedTotal - categoriesTotal) > 1) {
+   
 
-      // Set dashboard data
+        calculatedTotal = categoriesTotal;
+      }
+  
+      // Set dashboard data with the verified total
       setDashboardData({
         overview: {
-          totalAmount: expenditureStatistics.totalAmount || 0,
+          totalAmount: calculatedTotal,
           pendingCount: expenditureStatistics.pendingCount || 0,
         },
         categoryData,
@@ -210,7 +237,7 @@ export default function ExpenditureDashboard() {
     }
   }, [expenditureStatistics]);
 
-  // Initialize form with current username when showing create form
+
   useEffect(() => {
     if (showCreateForm) {
       setFormData((prev) => ({
@@ -277,14 +304,10 @@ export default function ExpenditureDashboard() {
         employeeId: userId,
       };
 
-      console.log("Submitting expenditure with data:", expenditureData);
-
       const result = await createExpenditure(expenditureData);
       if (result.success) {
         toast.success("Expenditure created successfully");
         toggleCreateForm(); // Close the form
-
-        // Refresh data by incrementing the trigger
         setRefreshTrigger((prev) => prev + 1);
       } else {
         toast.error(result.message || "Failed to create expenditure");
@@ -389,24 +412,22 @@ export default function ExpenditureDashboard() {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
 
   const renderApprovalQueue = () => {
-    const pendingItems =
-      dashboardData.pendingApprovals &&
-      dashboardData.pendingApprovals.length > 0
-        ? dashboardData.pendingApprovals
-        : expenditures.filter((item) => item.status === "pending");
-
+    const pendingItems = dashboardData.pendingApprovals && dashboardData.pendingApprovals.length > 0
+      ? dashboardData.pendingApprovals
+      : (expenditures && expenditures.filter(item => item.status === "pending")) || [];
+  
     if (pendingItems.length === 0) {
       return <NoDataMessage message="No pending approvals" />;
     }
-
+  
     return (
       <div className={styles.approvalQueue}>
         {pendingItems.slice(0, 5).map((item, index) => (
-          <div key={index} className={styles.queueItem}>
+          <div key={item._id || index} className={styles.queueItem}>
             <div className={styles.queueItemDetails}>
               <span className={styles.queueItemName}>{item.description}</span>
               <span className={styles.queueItemAmount}>
-                ${item.amount.toLocaleString()}
+                ${typeof item.amount === 'number' ? item.amount.toLocaleString() : '0'}
               </span>
             </div>
             <div className={styles.queueItemActions}>
@@ -429,6 +450,8 @@ export default function ExpenditureDashboard() {
       </div>
     );
   };
+
+  
 
   const Pagination = () => {
     return (
@@ -470,9 +493,7 @@ export default function ExpenditureDashboard() {
 
   return (
     <div className={styles.expenditureContainer}>
-      {loading && (
-        <div className={styles.loadingOverlay}>Loading expenditure data...</div>
-      )}
+
 
       <div className={styles.headerSection}>
         <h1>Expenditure</h1>
@@ -1035,9 +1056,6 @@ export default function ExpenditureDashboard() {
   );
 }
 
-// Helper functions
-
-// Calculate forecast based on average monthly spending
 function calculateForecast() {
   const data = useExpenditureStore.getState().expenditureStatistics;
 
@@ -1047,18 +1065,21 @@ function calculateForecast() {
 
   // Calculate average monthly spending
   const totalAmount = data.monthlyData.reduce(
-    (sum, month) => sum + month.totalAmount,
+    (sum, month) => sum + (month.totalAmount || 0),
     0
   );
-  const avgMonthly = totalAmount / data.monthlyData.length;
+  const avgMonthly = data.monthlyData.length > 0 ? totalAmount / data.monthlyData.length : 0;
 
   return Math.round(avgMonthly * 3);
 }
-
 const budgetLimit = 50000;
 
 function handleExportCSV() {
-  const expenditures = useExpenditureStore.getState().expenditures?.data || [];
+  const store = useExpenditureStore.getState();
+  const expenditures = store.expenditures && store.expenditures.data 
+    ? store.expenditures.data 
+    : [];
+    
   if (expenditures.length === 0) {
     toast.error("No data to export");
     return;
@@ -1068,9 +1089,9 @@ function handleExportCSV() {
   const rows = expenditures
     .map(
       (item) =>
-        `"${item.description}","${item.employeeName}",${item.amount},"${
-          item.category
-        }","${new Date(item.date).toLocaleDateString()}","${item.status}"`
+        `"${item.description || ''}","${item.employeeName || ''}",${item.amount || 0},"${
+          item.category || ''
+        }","${item.date ? new Date(item.date).toLocaleDateString() : ''}","${item.status || ''}"`
     )
     .join("\n");
 

@@ -26,10 +26,7 @@ export const useExpenditureStore = create(
             throw new Error("Authentication required");
           }
           
-          // Ensure employeeId is properly formatted for MongoDB ObjectId
           const effectiveEmployeeId = employeeId || userId;
-          
-          console.log('Creating expenditure with employeeId:', effectiveEmployeeId);
           
           if (!effectiveEmployeeId) {
             throw new Error("Employee ID is required but not available");
@@ -87,6 +84,7 @@ export const useExpenditureStore = create(
         limit = 10 
       } = {}) => {
         try {
+          // Set loading to true at the beginning
           set({ loading: true, error: null });
           const authStore = useAuthStore.getState();
           const accessToken = authStore.accessToken;
@@ -95,30 +93,22 @@ export const useExpenditureStore = create(
             throw new Error("Authentication required");
           }
           
-          // For non-admins, default to only showing their own expenditures
-          // For admins, show all expenditures by default
           const effectiveEmployeeId = employeeId || 
             (!authStore.isAdmin ? authStore.userId : undefined);
           
-          // Build query string from params
           const queryParams = new URLSearchParams();
           
-          // IMPORTANT: If status is specifically requested (like 'pending'), don't filter by date
-          // This ensures ALL pending items are shown regardless of date range
-          if (status) {
-            queryParams.append('status', status);
-          } else {
-            // Only apply date filters when not specifically filtering by status
-            if (startDate) queryParams.append('startDate', startDate);
-            if (endDate) queryParams.append('endDate', endDate);
-          }
-          
+          if (status) queryParams.append('status', status);
           if (category) queryParams.append('category', category);
           if (effectiveEmployeeId) queryParams.append('employeeId', effectiveEmployeeId);
           if (page) queryParams.append('page', page);
           if (limit) queryParams.append('limit', limit);
           
+          if (startDate) queryParams.append('startDate', startDate);
+          if (endDate) queryParams.append('endDate', endDate);
+          
           const queryString = queryParams.toString() ? `?${queryParams.toString()}` : "";
+          
           
           const response = await fetch(`${SERVER_API}/expenditures${queryString}`, {
             headers: {
@@ -136,7 +126,7 @@ export const useExpenditureStore = create(
           const data = await response.json();
           
           if (data.success) {
-            set({ expenditures: data });
+            set({ expenditures: data, loading: false });
             return { 
               success: true, 
               data: data.data,
@@ -148,15 +138,14 @@ export const useExpenditureStore = create(
             throw new Error(data.message || "Failed to fetch expenditures");
           }
         } catch (error) {
-          set({ error: error.message });
+          set({ error: error.message, loading: false });
           console.error("Fetch expenditures error:", error);
           return { success: false, message: error.message };
-        } finally {
-          set({ loading: false });
         }
       },
       
-      // Get expenditure statistics - force immediate update without caching
+      
+
       getExpenditureStatistics: async ({ startDate, endDate } = {}) => {
         try {
           set({ loading: true, error: null });
@@ -195,21 +184,19 @@ export const useExpenditureStore = create(
           const data = await response.json();
           
           if (data.success) {
-            set({ expenditureStatistics: data.data });
+            set({ expenditureStatistics: data.data, loading: false });
             return { success: true, data: data.data };
           } else {
             throw new Error(data.message || "Failed to fetch expenditure statistics");
           }
         } catch (error) {
-          set({ error: error.message });
+          set({ error: error.message, loading: false });
           console.error("Expenditure statistics error:", error);
           return { success: false, message: error.message };
-        } finally {
-          set({ loading: false });
         }
       },
-      
-      // Approve expenditure (admin only) with specific cache-busting refresh
+
+
       approveExpenditure: async (id) => {
         try {
           set({ loading: true, error: null });
@@ -230,7 +217,8 @@ export const useExpenditureStore = create(
           if (!response.ok) {
             const errorData = await response.json();
             throw new Error(
-              errorData.message || `HTTP error! status: ${response.status}`
+/*************  ✨ Codeium Command ⭐  *************/
+/******  6612008d-2844-4f2e-a855-121191c7cdbc  *******/              errorData.message || `HTTP error! status: ${response.status}`
             );
           }
           
