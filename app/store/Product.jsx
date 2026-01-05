@@ -17,8 +17,6 @@ export const useProductStore = create(
       getProducts: async (params = {}) => {
         try {
           set({ loading: true, error: null });
-          
-          // Build query string from params
           const queryParams = new URLSearchParams();
           Object.entries(params).forEach(([key, value]) => {
             if (value !== undefined && value !== null) {

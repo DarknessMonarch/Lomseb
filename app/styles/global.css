@@ -1,16 +1,18 @@
 @media screen {
   * {
     /* dynamic style */
-    --return-color: #eb452bff;
     --primary-color: #10394e;
+    --return-color: #eb452bff;
     --recieved-color: #f79128ff;
     --secondary-color: #00eda1;
     --background-color: #ffffff;
     --tertiary-color: #062332ff;
+    --dark-light-color: #e9f4fa;
     --return-color-light: #fca854;
     --primary-light-color: #557e92;
     --tertiary-color-light: #0c3144;
     --background-color-dark: #f8f7f7;
+    --transition-animation: transform 0.2s ease, box-shadow 0.2s ease;
     /* background: #eb452b; */
     --linear-background: linear-gradient(
       90deg,

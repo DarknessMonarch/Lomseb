@@ -1,49 +1,48 @@
 @media screen {
   .dashboardContainer {
-    padding: 24px;
-    background-color: var(--background-color-dark);
-    height: 100%;
+    gap: 20px;
     width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
     overflow: hidden;
     overflow-y: auto;
     color: var(--primary-color);
+    flex-direction: column;
 
   }
 
   .dashboardHeader {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    justify-content: space-between;
   }
 
   .dashboardHeader h1 {
     color: var(--primary-color);
+    font-size: 1.4rem;
     font-weight: 600;
-    font-size: 28px;
-    margin: 0;
   }
 
   .headerActions {
-    display: flex;
     gap: 16px;
+    display: flex;
     align-items: center;
   }
 
   .dateSelector {
     display: flex;
-    align-items: center;
-    background-color: var(--background-color);
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
     padding: 8px 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-line);
+    background-color: var(--background-color);
+
   }
 
   .dateSelector span {
-    margin-right: 8px;
+    font-size: 1rem;
     color: var(--primary-color);
-    font-weight: 500;
   }
 
   .dropdownButton {
@@ -51,83 +50,72 @@
     border: none;
     cursor: pointer;
     color: var(--primary-light-color);
-    font-size: 10px;
   }
 
   .resetButton {
-    display: flex;
-    align-items: center;
     gap: 8px;
-    background-color: var(--return-color);
-    background: var(--linear-background);
-    color: var(--background-color);
     border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
+    display: flex;
+    font-size: 1rem;
     cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 8px;
+    align-items: center;
+    color: var(--background-color);
+    background: var(--linear-background);
     font-family: var(--font-poppins-medium);
-    transition: background-color 0.2s ease-in-out;
+    transition: var(--transition-animation);
   }
-
-
 
   .resetButton:disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }
 
-  /* Section Title */
   .sectionTitle {
     gap: 10px;
-    margin: 24px 0 16px;
-    border-bottom: 1px solid rgba(224, 224, 224, 0.3);
-    padding-bottom: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
   .sectionTitle h2 {
-    font-size: 20px;
     font-weight: 600;
     color: var(--primary-color);
-    margin: 0;
+    font-size: 1.4rem;
   }
 
-  /* Stats Cards */
   .statsContainer {
+    gap: 10px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
   }
 
   .statsCard {
     background-color: var(--background-color);
-    border-radius: 12px;
+    transition: var(--transition-animation);
+    box-shadow:var(--box-shadow-line);
+    border-radius: 8px;
     padding: 20px;
     display: flex;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid rgba(224, 224, 224, 0.15);
+    gap: 10px;
   }
 
   .statsCard:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
   }
 
   .statsCardIcon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 50px;
     height: 50px;
-    background-color: rgba(59, 130, 246, 0.1);
-    border-radius: 12px;
-    margin-right: 16px;
+    display: flex;
+    font-size: 1rem;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
     color: var(--tertiary-color);
-    font-size: 20px;
+    background-color:var(--dark-light-color);
   }
 
   .statsCardIcon svg {
