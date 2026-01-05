@@ -12,7 +12,7 @@ import {
   PoppinsThin,
 } from "@/app/fonts/font";
 
-const SITE_URL = "https://lomseb.swiftsync.com";
+const SITE_URL = "https://lomseb.swiftsyn.com";
 const BANNER_URL = "https://raw.githubusercontent.com/DarknessMonarch/lomseb/refs/heads/master/public/assets/banner.png";
 
 export const metadata = {

@@ -1,4 +1,4 @@
-const DOMAIN = "https://bilkro.swiftsync.com";
+const DOMAIN = "https://lomseb.swiftsyn.com";
 const DEFAULT_PRIORITY = 0.8;
 const HIGH_PRIORITY = 1.0;
 

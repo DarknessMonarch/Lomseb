@@ -30,7 +30,7 @@ export default function robots() {
         disallow: ['/']  
       }
     ],
-    sitemap: 'https://bilkro.swiftsync.com/sitemap.xml',
-    host: 'https://bilkro.swiftsync.com'
+    sitemap: 'https://lomseb.swiftsyn.com/sitemap.xml',
+    host: 'https://lomseb.swiftsyn.com'
   }
 }

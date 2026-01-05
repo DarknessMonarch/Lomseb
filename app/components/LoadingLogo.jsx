@@ -11,6 +11,7 @@ export default function Loading() {
         alt="Animated Logo "
         height={300}
         loading="lazy"
+        optimize="false"
       />
     </div>
   );
