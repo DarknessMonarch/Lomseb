@@ -14,13 +14,13 @@ module.exports = {
       },
       {
         protocol: "https",
-        hostname: "minioapi.swiftsyn.com",
+        hostname: "minio.swiftsyn.com",
         port: "",
         pathname: '/**',
       },
           {
         protocol: "https",
-        hostname: "minioapi.swiftsyn.com",
+        hostname: "minio.swiftsyn.com",
         port: "",
         pathname: '/swiftsyn/**',
       }
